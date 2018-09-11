@@ -76,7 +76,7 @@ namespace Distribuidora
         {
             Empleado empleado = new Empleado (); 
             SqlConnection con = ObtenerConexion();
-            string sql = "select * from Empleado where Email = @mail;";
+            string sql = "SELECT IdFuncionario, Nombre, Contrasena, Email FROM Funcionario WHERE Email = @mail;";
             SqlParameter par = new SqlParameter("@mail", this.email);
             SqlDataReader reader = null;
             try
@@ -116,7 +116,7 @@ namespace Distribuidora
             SqlConnection con = ObtenerConexion();
             try
             {
-                string sql = "insert into Empleado(Nombre, Email, Contrasena) values(@nom, @mail, @contrasena)";
+                string sql = "insert into Funcionario(Nombre, Email, Contrasena) values(@nom, @mail, @contrasena)";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parNom = new SqlParameter("@nom", this.nombre);
                 SqlParameter parMail = new SqlParameter("@mail", this.email);
@@ -128,17 +128,16 @@ namespace Distribuidora
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
                 if (afectadas > 0) ret = true;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             finally
             {
                 if (con.State == ConnectionState.Open)
                 {
                     con.Close();
-                    con.Dispose();
-                    Console.WriteLine("Cerrada");
+                    con.Dispose();                    
                 }
             }
             return ret;
