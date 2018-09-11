@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaEmpleado.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -113,6 +114,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaEmpleado.aspx.cs">
+      <DependentUpon>AltaEmpleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaEmpleado.aspx.designer.cs">
+      <DependentUpon>AltaEmpleado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Empleado.cs" />
     <Compile Include="Fabricado.cs" />
     <Compile Include="IActiveRecord.cs" />
@@ -130,6 +138,7 @@
     </Compile>
     <Compile Include="WebForms\Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForms\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>

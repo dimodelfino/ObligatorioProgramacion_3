@@ -81,27 +81,27 @@ namespace Distribuidora
             }
         }
 
-        bool IActiveRecord<Producto>.Borrar()
+        public bool Borrar()
         {
             throw new NotImplementedException();
         }
 
-        Producto IActiveRecord<Producto>.Buscar()
+        public Producto Buscar()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Producto>.Crear()
+        public bool Crear()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Producto>.Modificar()
+        public bool Modificar()
         {
             throw new NotImplementedException();
         }
 
-        List<Producto> IActiveRecord<Producto>.TraerTodo()
+        public List<Producto> TraerTodo()
         {
             throw new NotImplementedException();
         }

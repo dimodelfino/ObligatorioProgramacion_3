@@ -67,12 +67,12 @@ namespace Distribuidora
             }
         }
 
-        bool IActiveRecord<Empleado>.Borrar()
+        public bool Borrar()
         {
             throw new NotImplementedException();
         }
 
-        Empleado IActiveRecord<Empleado>.Buscar()
+        public Empleado Buscar()
         {
             Empleado empleado = new Empleado (); 
             SqlConnection con = ObtenerConexion();
@@ -110,7 +110,7 @@ namespace Distribuidora
             return empleado;
         }
 
-        bool IActiveRecord<Empleado>.Crear()
+        public bool Crear()
         {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
@@ -144,12 +144,12 @@ namespace Distribuidora
         }
 
 
-        bool IActiveRecord<Empleado>.Modificar()
+        public bool Modificar()
         {
             throw new NotImplementedException();
         }
 
-        List<Empleado> IActiveRecord<Empleado>.TraerTodo()
+        public List<Empleado> TraerTodo()
         {
             throw new NotImplementedException();
         }

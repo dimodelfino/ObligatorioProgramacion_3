@@ -18,11 +18,23 @@ namespace Distribuidora.WebForms
         protected void LoginFuncionario_Authenticate(object sender, AuthenticateEventArgs e)
         {
             e.Authenticated = true;
-            Empleado e = new Empleado();
+            Empleado emp = new Empleado();
             if (LoginFuncionario.UserName.Trim() != null && LoginFuncionario.Password.Trim() != null)
             {
-                e.Email = LoginFuncionario.UserName.Trim();
-                e = e.Buscar();
+                if (emp != null && emp.Contrasena == LoginFuncionario.Password.Trim() && emp.Email == LoginFuncionario.UserName.Trim())
+                {
+                    emp.Email = LoginFuncionario.UserName.Trim();
+                    emp = emp.Buscar();
+                    Session["Funcionario"] = emp;
+                }else
+                {
+                    e.Authenticated = false;
+                    lblLoginEmp.Text = "No existe usuario con esas credenciales.";
+                }
+            }else
+            {
+                e.Authenticated = false;
+                lblLoginEmp.Text = "Asegurese de ingresar un valor en nombre de usuario y contraseña.";
             }
                     
         }

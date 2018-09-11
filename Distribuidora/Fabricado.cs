@@ -53,27 +53,27 @@ namespace Distribuidora
             }
         }
 
-        bool IActiveRecord<Fabricado>.Borrar()
+        public bool Borrar()
         {
             throw new NotImplementedException();
         }
 
-        Fabricado IActiveRecord<Fabricado>.Buscar()
+        public Fabricado Buscar()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Fabricado>.Crear()
+        public bool Crear()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Fabricado>.Modificar()
+        public bool Modificar()
         {
             throw new NotImplementedException();
         }
 
-        List<Fabricado> IActiveRecord<Fabricado>.TraerTodo()
+        public List<Fabricado> TraerTodo()
         {
             throw new NotImplementedException();
         }

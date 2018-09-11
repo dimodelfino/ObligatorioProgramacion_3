@@ -10,5 +10,5 @@
             <TitleTextStyle BackColor="#990000" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
         </asp:Login>
     </div>
-    <asp:Label ID="lblRegisterUser" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblLoginEmp" runat="server" Text=""></asp:Label>
 </asp:Content>

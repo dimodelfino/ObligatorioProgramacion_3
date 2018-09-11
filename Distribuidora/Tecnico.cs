@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace Distribuidora
 {
-    public class Tecnico : Empledao, IActiveRecord<Tecnico>
+    public class Tecnico : Empleado, IActiveRecord<Tecnico>
     {
         private string descTarea;
         private int tempTarea;
@@ -54,17 +54,17 @@ namespace Distribuidora
             }
         }
 
-        bool IActiveRecord<Tecnico>.Borrar()
+        public bool Borrar()
         {
             throw new NotImplementedException();
         }
 
-        Tecnico IActiveRecord<Tecnico>.Buscar()
+        public Tecnico Buscar()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Tecnico>.Crear(string email)
+        public bool Crear(string email)
         {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
@@ -98,12 +98,12 @@ namespace Distribuidora
             return ret;
         }
 
-        bool IActiveRecord<Tecnico>.Modificar()
+        public bool Modificar()
         {
             throw new NotImplementedException();
         }
 
-        List<Tecnico> IActiveRecord<Tecnico>.TraerTodo()
+        public List<Tecnico> TraerTodo()
         {
             throw new NotImplementedException();
         }

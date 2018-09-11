@@ -39,27 +39,27 @@ namespace Distribuidora
             }
         }
 
-        bool IActiveRecord<Importado>.Borrar()
+        public bool Borrar()
         {
             throw new NotImplementedException();
         }
 
-        Importado IActiveRecord<Importado>.Buscar()
+        public Importado Buscar()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Importado>.Crear()
+        public bool Crear()
         {
             throw new NotImplementedException();
         }
 
-        bool IActiveRecord<Importado>.Modificar()
+        public bool Modificar()
         {
             throw new NotImplementedException();
         }
 
-        List<Importado> IActiveRecord<Importado>.TraerTodo()
+        public List<Importado> TraerTodo()
         {
             throw new NotImplementedException();
         }
