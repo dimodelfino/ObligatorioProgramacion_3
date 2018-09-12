@@ -65,7 +65,7 @@ namespace Distribuidora
         }
 
         public bool Crear(string email)
-        {
+        {            
             bool ret = false;
             SqlConnection con = ObtenerConexion();
             try

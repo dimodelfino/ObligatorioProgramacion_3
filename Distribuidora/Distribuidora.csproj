@@ -94,11 +94,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AltaEmpleado.aspx" />
+    <Content Include="WebForms\AltaEmpleado.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WebForms\Styles.css" />
+    <Content Include="WebForms\WelcomePage.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,11 +116,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AltaEmpleado.aspx.cs">
+    <Compile Include="WebForms\AltaEmpleado.aspx.cs">
       <DependentUpon>AltaEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AltaEmpleado.aspx.designer.cs">
+    <Compile Include="WebForms\AltaEmpleado.aspx.designer.cs">
       <DependentUpon>AltaEmpleado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Empleado.cs" />
@@ -142,6 +144,13 @@
     </Compile>
     <Compile Include="WebForms\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\WelcomePage.aspx.cs">
+      <DependentUpon>WelcomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\WelcomePage.aspx.designer.cs">
+      <DependentUpon>WelcomePage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

@@ -21,22 +21,27 @@ namespace Distribuidora.WebForms
             Empleado emp = new Empleado();
             if (LoginFuncionario.UserName.Trim() != null && LoginFuncionario.Password.Trim() != null)
             {
+                emp.Email = LoginFuncionario.UserName.Trim();
+                emp = emp.Buscar();
+
                 if (emp != null && emp.Contrasena == LoginFuncionario.Password.Trim() && emp.Email == LoginFuncionario.UserName.Trim())
                 {
-                    emp.Email = LoginFuncionario.UserName.Trim();
-                    emp = emp.Buscar();
+
                     Session["Funcionario"] = emp;
-                }else
+                    Response.Redirect("~/WelcomePage.aspx");
+                }
+                else
                 {
                     e.Authenticated = false;
                     lblLoginEmp.Text = "No existe usuario con esas credenciales.";
                 }
-            }else
+            }
+            else
             {
                 e.Authenticated = false;
                 lblLoginEmp.Text = "Asegurese de ingresar un valor en nombre de usuario y contraseña.";
             }
-                    
+
         }
     }
 }

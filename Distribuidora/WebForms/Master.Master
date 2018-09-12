@@ -4,13 +4,31 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Distribuidora</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:ContentPlaceHolder ID="cphMenuInvitado" runat="server">
+            <ul>                
+                <li><a class="active" href="ListadoProdTipo.aspx">Listado De Productos Filtrado Por Tipo/RF01-05</a></li>
+            </ul>
+        </asp:ContentPlaceHolder>
+
+        <asp:ContentPlaceHolder ID="cpgMenuEmpleado" runat="server">
+            <ul>
+                <li><a href="AltaProductos.aspx">Alta Productos/RF01-01</a></li>
+                <li><a href="AsignarTecnico.aspx">Asignar Tecnicos/RF02-02</a></li>                
+                <li><a href="ListadoFabricados.aspx">Listado De Productos Fabricados/RF01-03</a></li>                
+                <li><a href="AltaEmpleado.aspx">Alta Empleados/RF01-04</a></li>                
+                <li><a href="ListProdPorTipo.aspx">Listado De Productos Filtrado Por Tipo/RF01-05</a></li>                
+                <li><a href="TxtProd.aspx">Listado De Productos Txt/RF01-06</a></li>                
+            </ul>
+        </asp:ContentPlaceHolder>
+
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
