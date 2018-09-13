@@ -139,6 +139,78 @@ namespace Distribuidora {
         protected global::System.Web.UI.WebControls.CheckBox chkBxTecnico;
         
         /// <summary>
+        /// divTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTecnico;
+        
+        /// <summary>
+        /// lblDescTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescTarea;
+        
+        /// <summary>
+        /// txtDescTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescTarea;
+        
+        /// <summary>
+        /// rfvDescTareaTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescTareaTecnico;
+        
+        /// <summary>
+        /// lblTiempTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempTarea;
+        
+        /// <summary>
+        /// txtTiempTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTiempTarea;
+        
+        /// <summary>
+        /// rfvTiempTareaTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTiempTareaTecnico;
+        
+        /// <summary>
+        /// cmpvTiempoTareaMayorCero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvTiempoTareaMayorCero;
+        
+        /// <summary>
         /// lblMensajeEmpleado control.
         /// </summary>
         /// <remarks>

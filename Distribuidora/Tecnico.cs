@@ -12,8 +12,7 @@ namespace Distribuidora
     public class Tecnico : Empleado, IActiveRecord<Tecnico>
     {
         private string descTarea;
-        private int tempTarea;
-        private int id;
+        private int tempTarea;        
 
         public string DescTarea
         {
@@ -39,20 +38,7 @@ namespace Distribuidora
             {
                 tempTarea = value;
             }
-        }
-
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-            }
-        }
+        }        
 
         public bool Borrar()
         {
@@ -70,14 +56,17 @@ namespace Distribuidora
             SqlConnection con = ObtenerConexion();
             try
             {
-                string sql = "UPDATE Funcionario SET DescTarea = @DescTarea, TiempoTarea =  WHERE Email = @email";
-                    //"insert into Funcionario(DescTarea, TiempoTarea) values(@nom, @mail, @contrasena)";
+                string sql = "INSERT INTO Funcionario VALUES(@nom, @contrasena, @mail, @descTarea, @tiempoTarea)";                    
                 List<SqlParameter> parametros = new List<SqlParameter>();
-                SqlParameter parDesc = new SqlParameter("@DescTarea", this.DescTarea);
+                SqlParameter parNom = new SqlParameter("@nom", this.Nombre);
+                SqlParameter parPass = new SqlParameter("@contrasena", this.Contrasena);
                 SqlParameter parMail = new SqlParameter("@mail", email);
+                SqlParameter parDesc = new SqlParameter("@DescTarea", this.DescTarea);                
                 SqlParameter parTiempTarea = new SqlParameter("@TiempoTarea", this.TiempTarea);
-                parametros.Add(parDesc);
-                parametros.Add(parMail);
+                parametros.Add(parNom);
+                parametros.Add(parPass);
+                parametros.Add(parMail);                
+                parametros.Add(parDesc);                
                 parametros.Add(parTiempTarea);
                 con.Open();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);

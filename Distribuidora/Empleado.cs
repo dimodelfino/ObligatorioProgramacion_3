@@ -13,7 +13,7 @@ namespace Distribuidora
         private string nombre;
         private string email;
         private string contrasena;
-        private int id;
+        private int idEmpleado;
 
         public string Nombre
         {
@@ -54,16 +54,16 @@ namespace Distribuidora
             }
         }
 
-        public int Id
+        public int IdEmpleado
         {
             get
             {
-                return id;
+                return idEmpleado;
             }
 
             set
             {
-                id = value;
+                idEmpleado = value;
             }
         }
 
@@ -87,6 +87,7 @@ namespace Distribuidora
                 {
                     empleado.nombre = reader["Nombre"].ToString();
                     empleado.contrasena = reader["Contrasena"].ToString();
+                    empleado.IdEmpleado = int.Parse(reader["IdFuncionario"].ToString());
                     empleado.email = this.email; 
                 }
             }
@@ -116,7 +117,7 @@ namespace Distribuidora
             SqlConnection con = ObtenerConexion();
             try
             {
-                string sql = "insert into Funcionario(Nombre, Email, Contrasena) values(@nom, @mail, @contrasena)";
+                string sql = "INSERT INTO Funcionario(Nombre, Email, Contrasena) VALUES(@nom, @mail, @contrasena)";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parNom = new SqlParameter("@nom", this.nombre);
                 SqlParameter parMail = new SqlParameter("@mail", this.email);

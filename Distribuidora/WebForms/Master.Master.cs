@@ -12,6 +12,7 @@ namespace Distribuidora.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             cphMenuInvitado.Visible = true;
+            cpgMenuEmpleado.Visible = false;
             if (Session["Funcionario"] != null)
             {
                 cphMenuInvitado.Visible = false;

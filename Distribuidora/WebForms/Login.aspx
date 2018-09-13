@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div runat="server" id="divLogin" align="center">
+    <div runat="server" style="padding-top: 50px;" id="divLogin" align="center">
         <asp:Login ID="LoginFuncionario" runat="server" BackColor="#FFFBD6" BorderColor="#FFDFAD" BorderPadding="4" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#333333" Height="148px" TextLayout="TextOnTop" Width="338px" OnAuthenticate="LoginFuncionario_Authenticate">
             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
             <LoginButtonStyle BackColor="White" BorderColor="#CC9966" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#990000" />
