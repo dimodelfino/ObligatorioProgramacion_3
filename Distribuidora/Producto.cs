@@ -16,6 +16,7 @@ namespace Distribuidora
         private double costo;
         private double precioSugerido;
 
+        #region Properties 
         public int Id
         {
             get
@@ -80,30 +81,25 @@ namespace Distribuidora
                 precioSugerido = value;
             }
         }
+        #endregion
 
-        public bool Borrar()
-        {
+        #region Metodos
+        public abstract bool Borrar();
+
+        public Producto Buscar() {
+
             throw new NotImplementedException();
         }
 
-        public Producto Buscar()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool Crear();
 
-        public bool Crear()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract bool Modificar();
 
-        public bool Modificar()
-        {
-            throw new NotImplementedException();
-        }
+        public List<Producto> TraerTodo() {
 
-        public List<Producto> TraerTodo()
-        {
             throw new NotImplementedException();
         }
+        #endregion
+
     }
 }

@@ -12,8 +12,9 @@ namespace Distribuidora
     public class Tecnico : Empleado, IActiveRecord<Tecnico>
     {
         private string descTarea;
-        private int tempTarea;        
+        private int tempTarea;
 
+        #region Properties
         public string DescTarea
         {
             get
@@ -38,8 +39,10 @@ namespace Distribuidora
             {
                 tempTarea = value;
             }
-        }        
+        }
+        #endregion
 
+        #region Metodos
         public bool Borrar()
         {
             throw new NotImplementedException();
@@ -96,5 +99,7 @@ namespace Distribuidora
         {
             throw new NotImplementedException();
         }
+#endregion
+
     }
 }

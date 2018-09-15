@@ -13,6 +13,7 @@ namespace Distribuidora
         private string origen;
         private int cantImportacion;
 
+        #region Properties
         public string Origen
         {
             get
@@ -37,9 +38,10 @@ namespace Distribuidora
             {
                 cantImportacion = value;
             }
-        }        
+        }
+        #endregion
 
-        public bool Borrar()
+        public override bool Borrar()
         {            
             throw new NotImplementedException();
         }
@@ -49,12 +51,12 @@ namespace Distribuidora
             throw new NotImplementedException();
         }
 
-        public bool Crear()
+        public override bool Crear()
         {
             throw new NotImplementedException();
         }
 
-        public bool Modificar()
+        public override bool Modificar()
         {
             throw new NotImplementedException();
         }

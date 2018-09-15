@@ -12,8 +12,10 @@ namespace Distribuidora
     {
         private int tiempoFab;
         private string usuarioAlta;
+        private int idFabricado;
         private List<Tecnico> tecnicos;
 
+        #region Properties
         public int TiempoFab
         {
             get
@@ -53,22 +55,111 @@ namespace Distribuidora
             }
         }
 
-        public bool Borrar()
+        public int IdFabricado
         {
+            get
+            {
+                return idFabricado;
+            }
+
+            set
+            {
+                idFabricado = value;
+            }
+        }
+
+        #endregion
+
+        public override bool Borrar()
+        {
+            // TODO: Ver si se elimina de FabricadoFuncionarios, luego de Fabricados y despues de Producto o se crea un atributo en Fabricados que sea discontinuado
+            // xa q la BD sea persistente
             throw new NotImplementedException();
         }
 
         public Fabricado Buscar()
         {
-            throw new NotImplementedException();
+            Fabricado fabricado = new Fabricado();
+            SqlConnection con = ObtenerConexion();
+            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE Producto.Nombre = @nombre";
+            SqlParameter par = new SqlParameter("@nombre", this.Nombre);
+            SqlDataReader reader = null;
+
+            try
+            {
+                reader = EjecutarConsulta(con, sql, new List<SqlParameter>() { par }, CommandType.Text);
+
+                if (reader.Read())
+                {
+                    fabricado.tiempoFab = Convert.ToInt32(reader["TiempoFab"]);
+                    fabricado.usuarioAlta = reader["UsuarioAlta"].ToString();
+                    fabricado.Id = Convert.ToInt32(reader["IdFabricado"]);
+                    fabricado.Nombre = this.Nombre;
+                    fabricado.Desc = reader["Descripcion"].ToString();
+                    fabricado.Costo = Convert.ToInt32(reader["Costo"]);
+                    fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
+                    //TODO: Lista de tecnicos ??
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+
+            return fabricado;
         }
 
-        public bool Crear()
+        public override bool Crear()
         {
-            throw new NotImplementedException();
+            bool ret = false;
+            SqlConnection con = ObtenerConexion();
+            try
+            {
+                string sql = "INSERT INTO Producto(Nombre, Descripcion, Costo, PrecioSugerido) VALUES(@nombre, @descripcion, @costo, @precioSugerido) SELECT scope_identity()AS IdProd";
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
+                SqlParameter parDescripcion = new SqlParameter("@descripcion", this.Desc);
+                SqlParameter parCosto = new SqlParameter("@costo", this.Costo);
+                SqlParameter parPrecioSugerido = new SqlParameter("@precioSugerido", this.PrecioSugerido);
+                parametros.Add(parNombre);
+                parametros.Add(parDescripcion);
+                parametros.Add(parCosto);
+                parametros.Add(parPrecioSugerido);
+                con.Open();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
+                if (afectadas > 0) ret = true;
+
+                // TODO Como hacer xa tener el id del producto y agregarlo a fabricado 
+                // Se puede poner el Insert con el Select en la consulta?
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return ret;
         }
 
-        public bool Modificar()
+        public override bool Modificar()
         {
             throw new NotImplementedException();
         }
