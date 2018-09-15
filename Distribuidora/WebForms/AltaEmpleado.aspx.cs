@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using Distribuidora.ServiceReference1;
 
 namespace Distribuidora
 {
