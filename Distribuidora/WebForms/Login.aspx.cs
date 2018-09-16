@@ -28,7 +28,7 @@ namespace Distribuidora.WebForms
                 {
 
                     Session["Funcionario"] = emp;
-                    Response.Redirect("~/WelcomePage.aspx");
+                    Response.Redirect("~/WebForms/WelcomePage.aspx");
                 }
                 else
                 {

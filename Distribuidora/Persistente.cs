@@ -13,7 +13,8 @@ namespace Distribuidora
         public SqlConnection ObtenerConexion()
         {
             SqlConnection con = new SqlConnection();
-            string strCon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            //string strCon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+            string strCon = ConfigurationManager.ConnectionStrings["Conexion_ThinkPad"].ConnectionString;            
             con.ConnectionString = strCon;
             return con;
         }
