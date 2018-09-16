@@ -196,7 +196,7 @@ namespace Distribuidora
             SqlConnection con = ObtenerConexion();
             try
             {
-                string sql = "UPDATE Funcionaro set Email=@email, Nombre=@nombre, Contrasena=@contrasen where Email=@email;";
+                string sql = "UPDATE Funcionaro set Email=@email, Nombre=@nombre, Contrasena=@contrasena where Email=@email;";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parNombre = new SqlParameter("@nombre", this.nombre);
                 SqlParameter parContrasena = new SqlParameter("@contrasena", this.contrasena);
@@ -229,7 +229,7 @@ namespace Distribuidora
             List<Empleado> personas = new List<Empleado>();
 
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT Nombre, Contrasena, Email, IdFuncionario from Funcionarios WHERE Activo=1;";
+            string sql = "SELECT Nombre, Contrasena, Email, IdFuncionario FROM Funcionarios WHERE Activo=1";
             SqlDataReader reader = null;
             try
             {

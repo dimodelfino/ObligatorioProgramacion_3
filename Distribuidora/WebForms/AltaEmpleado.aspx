@@ -44,5 +44,5 @@
     <br />
     <asp:Label ID="lblMensajeEmpleado" runat="server" Style="margin-bottom: 30px; margin-left: 20px" Text=""></asp:Label>
     <br />
-    <asp:Button ID="btnAgregarEmpleado" runat="server" Text="Agregar Usuario" Style="margin-top: 20px; margin-left: 10px"/>
+    <asp:Button ID="btnAgregarEmpleado" runat="server" Text="Agregar Usuario" Style="margin-top: 20px; margin-left: 10px" OnClick="btnAgregarEmpleado_Click"/>
 </asp:Content>
