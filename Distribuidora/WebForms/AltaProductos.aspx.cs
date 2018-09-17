@@ -13,5 +13,15 @@ namespace Distribuidora.WebForms
         {
 
         }
+
+        protected void rbtnListTipoProd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

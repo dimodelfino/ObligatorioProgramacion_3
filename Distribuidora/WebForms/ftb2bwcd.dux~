@@ -130,40 +130,67 @@ namespace Distribuidora.WebForms {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFabricado;
         
         /// <summary>
-        /// lblTiempoFab control.
+        /// lblDescTarea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTiempoFab;
+        protected global::System.Web.UI.WebControls.Label lblDescTarea;
         
         /// <summary>
-        /// txtTiempoFab control.
+        /// txtDescTarea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTiempoFab;
+        protected global::System.Web.UI.WebControls.TextBox txtDescTarea;
         
         /// <summary>
-        /// rfvTiempoFab control.
+        /// rfvDescTareaTecnico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTiempoFab;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescTareaTecnico;
         
         /// <summary>
-        /// cmpvTiempoFab control.
+        /// lblTiempTarea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cmpvTiempoFab;
+        protected global::System.Web.UI.WebControls.Label lblTiempTarea;
+        
+        /// <summary>
+        /// txtTiempTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTiempTarea;
+        
+        /// <summary>
+        /// rfvTiempTareaTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTiempTareaTecnico;
+        
+        /// <summary>
+        /// cmpvTiempoTareaMayorCero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvTiempoTareaMayorCero;
         
         /// <summary>
         /// divImportado control.
@@ -175,84 +202,84 @@ namespace Distribuidora.WebForms {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImportado;
         
         /// <summary>
-        /// lblOrigen control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrigen;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtOrigen control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrigen;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// rfvOrigen control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvOrigen;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// lblCantImp control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCantImp;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtCantImp control.
+        /// TextBox2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantImp;
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
         
         /// <summary>
-        /// rfvCantImp control.
+        /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCantImp;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// cmpvCantImp control.
+        /// CompareValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cmpvCantImp;
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
         
         /// <summary>
-        /// lblMensajeProducto control.
+        /// lblMensajeEmpleado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensajeProducto;
+        protected global::System.Web.UI.WebControls.Label lblMensajeEmpleado;
         
         /// <summary>
-        /// btnAgregarProducto control.
+        /// btnAgregarEmpleado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarProducto;
+        protected global::System.Web.UI.WebControls.Button btnAgregarEmpleado;
     }
 }
