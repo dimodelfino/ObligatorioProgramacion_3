@@ -7,8 +7,8 @@
             <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
             <LoginButtonStyle BackColor="White" BorderColor="#CC9966" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#990000" />
             <TextBoxStyle Font-Size="0.8em" />
-            <TitleTextStyle BackColor="#990000" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
+           <TitleTextStyle BackColor="#990000" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
         </asp:Login>
     </div>
-    <asp:Label ID="lblLoginEmp" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblLoginEmp" runat="server" BackColor="#990000" Font-Bold="True" Font-Size="0.9em" ForeColor="White"></asp:Label>
 </asp:Content>

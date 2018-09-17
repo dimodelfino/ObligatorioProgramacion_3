@@ -13,63 +13,81 @@ namespace Distribuidora
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["Funcionario"] == null)
-            //{
-            //    Response.Redirect("Login.aspx");
-            //}
+            if (Session["Funcionario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
             divTecnico.Visible = false;
             if (chkBxTecnico.Checked)
             {
                 divTecnico.Visible = true;
-            }            
+            }
         }
-      
+
         protected void chkBxTecnico_CheckedChanged(object sender, EventArgs e)
         {
             if (chkBxTecnico.Checked)
             {
                 divTecnico.Visible = true;
-            }else
+            }
+            else
             {
                 divTecnico.Visible = false;
-            }            
+            }
         }
 
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (IsValid && txtContreasena.Text != "" && txtMailEmpleado.Text != "")
             {
-                if (txtContreasena.Text != "" && txtMailEmpleado.Text != "")
+                if (chkBxTecnico.Checked)
                 {
-                    if (chkBxTecnico.Checked)
+                    Tecnico tec = new Tecnico
                     {
-                        lblMensajeEmpleado.Text = "El tecnico no se pudo dar de alta.";
-                        Tecnico tec = new Tecnico
-                        {
-                            Nombre = txtNombreEmpleado.Text,
-                            Email = txtMailEmpleado.Text,
-                            Contrasena = txtContreasena.Text,
-                            DescTarea = txtDescTarea.Text,
-                            TiempTarea = int.Parse(txtTiempTarea.Text)
-                        };
+                        Nombre = txtNombreEmpleado.Text,
+                        Email = txtMailEmpleado.Text,
+                        Contrasena = txtContreasena.Text,
+                        DescTarea = txtDescTarea.Text,
+                        TiempTarea = int.Parse(txtTiempTarea.Text)
+                    };
+                    if (tec.Buscar().Email == null)
+                    {
                         if (tec.Crear())
                         {
                             lblMensajeEmpleado.Text = "El tecnico se dio de alta correctamente.";
                         }
+                        else
+                        {
+                            lblMensajeEmpleado.Text = "El tecnico no se pudo dar de alta.";
+                        }
                     }
                     else
                     {
-                        lblMensajeEmpleado.Text = "El empleado no se pudo dar de alta.";
-                        Empleado emp = new Empleado
-                        {
-                            Nombre = txtNombreEmpleado.Text,
-                            Email = txtMailEmpleado.Text,
-                            Contrasena = txtContreasena.Text
-                        };
+                        lblMensajeEmpleado.Text = "Ya existe un tecnico con ese email.";
+                    }
+                }
+                else
+                {
+                    Empleado emp = new Empleado
+                    {
+                        Nombre = txtNombreEmpleado.Text,
+                        Email = txtMailEmpleado.Text,
+                        Contrasena = txtContreasena.Text
+                    };
+                    if (emp.Buscar().Email == null)
+                    {
                         if (emp.Crear())
                         {
                             lblMensajeEmpleado.Text = "El empleado se pudo dar de alta correctamente.";
                         }
+                        else
+                        {
+                            lblMensajeEmpleado.Text = "El empleado no se pudo dar de alta.";
+                        }
+                    }
+                    else
+                    {
+                        lblMensajeEmpleado.Text = "Ya existe un empleado con ese email";
                     }
                 }
             }

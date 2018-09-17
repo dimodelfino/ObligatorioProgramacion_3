@@ -33,7 +33,7 @@ namespace Distribuidora.WebForms
                 else
                 {
                     e.Authenticated = false;
-                    lblLoginEmp.Text = "No existe usuario con esas credenciales.";
+                    lblLoginEmp.Text = "No existe usuario con esas credenciales.";                    
                 }
             }
             else
