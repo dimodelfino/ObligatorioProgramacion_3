@@ -45,7 +45,36 @@ namespace Distribuidora
         #region Metodos
         public bool Borrar()
         {
-            throw new NotImplementedException();
+            bool ret = false;
+            SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
+            try
+            {
+                string sql = "UPDATE Funcionario SET Activo=0 where Email=@email;";
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                SqlParameter parMail = new SqlParameter("@mail", this.Email);
+                parametros.Add(parMail);
+                con.Open();
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                if (afectadas > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return ret;
         }
 
         public Tecnico Buscar()
@@ -94,6 +123,7 @@ namespace Distribuidora
         {            
             bool ret = false;
             SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
             try
             {
                 string sql = "INSERT INTO Funcionario VALUES(@nom, @contrasena, @mail, @descTarea, @tiempoTarea, 1, 'T')";                    
@@ -109,7 +139,8 @@ namespace Distribuidora
                 parametros.Add(parDesc);                
                 parametros.Add(parTiempTarea);
                 con.Open();
-                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0) ret = true;
             }
             catch
@@ -129,7 +160,42 @@ namespace Distribuidora
 
         public bool Modificar()
         {
-            throw new NotImplementedException();
+            bool ret = false;
+            SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
+            try
+            {
+                string sql = "UPDATE Funcionario SET Email=@email, Nombre=@nombre, Contrasena=@contrasena, DescTarea=@descTarea, TiempoTarea=@tiempoTarea WHERE Email=@email;";
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
+                SqlParameter parContrasena = new SqlParameter("@contrasena", this.Contrasena);
+                SqlParameter parMail = new SqlParameter("@email", this.Email);
+                SqlParameter DescTarea = new SqlParameter("@descTarea", this.descTarea);
+                SqlParameter TiempoTarea = new SqlParameter("@tiempoTarea", this.tempTarea);
+                parametros.Add(parNombre);
+                parametros.Add(parContrasena);
+                parametros.Add(parMail);
+                parametros.Add(DescTarea);
+                parametros.Add(TiempoTarea);
+                con.Open();
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                if (afectadas > 0) ret = true;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+
+            return ret;
         }
 
         public List<Tecnico> TraerTodo()

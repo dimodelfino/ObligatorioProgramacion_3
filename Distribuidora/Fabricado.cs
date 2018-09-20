@@ -74,7 +74,36 @@ namespace Distribuidora
         {
             // TODO: Ver si se elimina de FabricadoFuncionarios, luego de Fabricados y despues de Producto o se crea un atributo en Fabricados que sea discontinuado
             // xa q la BD sea persistente
-            throw new NotImplementedException();
+            bool ret = false;
+            SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
+            try
+            {
+                string sql = "UPDATE Producto SET Descontinuado=1 WHERE Nombre=@nombre;";
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
+                parametros.Add(parNombre);
+                con.Open();
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                if (afectadas > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return ret;
         }
 
         public Fabricado Buscar()
@@ -125,6 +154,7 @@ namespace Distribuidora
         {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
             try
             {
                 string sql = "INSERT INTO Producto(Nombre, Descripcion, Costo, PrecioSugerido) VALUES(@nombre, @descripcion, @costo, @precioSugerido) SELECT scope_identity()AS IdProd";
@@ -138,7 +168,8 @@ namespace Distribuidora
                 parametros.Add(parCosto);
                 parametros.Add(parPrecioSugerido);
                 con.Open();
-                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0) ret = true;
 
                 // TODO Como hacer xa tener el id del producto y agregarlo a fabricado 

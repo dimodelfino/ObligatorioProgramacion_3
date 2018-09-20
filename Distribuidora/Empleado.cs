@@ -88,6 +88,7 @@ namespace Distribuidora
         {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
             try
             {
                 string sql = "UPDATE Funcionario SET Activo=0 where Email=@email;";
@@ -95,7 +96,8 @@ namespace Distribuidora
                 SqlParameter parMail = new SqlParameter("@mail", this.email);
                 parametros.Add(parMail);
                 con.Open();
-                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0)
                 {
                     ret = true;
@@ -160,6 +162,7 @@ namespace Distribuidora
         {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
             try
             {
                 string sql = "INSERT INTO Funcionario(Nombre, Email, Contrasena, Activo, Tipo) VALUES(@nom, @mail, @contrasena, 1, 'E')";
@@ -171,7 +174,8 @@ namespace Distribuidora
                 parametros.Add(parMail);
                 parametros.Add(parConstrasena);
                 con.Open();
-                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0) ret = true;
             }
             catch
@@ -193,6 +197,7 @@ namespace Distribuidora
         {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
             try
             {
                 string sql = "UPDATE Funcionaro set Email=@email, Nombre=@nombre, Contrasena=@contrasena where Email=@email;";
@@ -204,7 +209,8 @@ namespace Distribuidora
                 parametros.Add(parContrasena);
                 parametros.Add(parMail);
                 con.Open();
-                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text);
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0) ret = true;
             }
             catch

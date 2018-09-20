@@ -15,6 +15,7 @@ namespace Distribuidora
         private string desc;
         private double costo;
         private double precioSugerido;
+        private bool descontinuado;
 
         #region Properties 
         public int Id
@@ -79,6 +80,19 @@ namespace Distribuidora
             set
             {
                 precioSugerido = value;
+            }
+        }
+
+        public bool Descontinuado
+        {
+            get
+            {
+                return descontinuado;
+            }
+
+            set
+            {
+                descontinuado = value;
             }
         }
         #endregion

@@ -19,7 +19,7 @@ namespace Distribuidora
             return con;
         }
 
-        public int EjecutarNoConsulta(SqlConnection con, string texto, List<SqlParameter> pars, CommandType tipo)
+        public int EjecutarNoConsulta(SqlConnection con, string texto, List<SqlParameter> pars, CommandType tipo, SqlTransaction trans)
         {
             int afectadas = -1;
             if (!string.IsNullOrEmpty(texto) && con != null)
@@ -28,6 +28,7 @@ namespace Distribuidora
                 try
                 {
                     if (con.State == ConnectionState.Closed) con.Open();
+                    if (trans != null) com.Transaction = trans;
                     afectadas = com.ExecuteNonQuery();
                 }
                 catch
@@ -56,6 +57,26 @@ namespace Distribuidora
                 }
             }
             return reader;
+
+        }
+
+        public object EjecutarEscalar(SqlConnection con, string texto, List<SqlParameter> pars, CommandType tipo)
+        {
+            object ret = null;
+            if (!string.IsNullOrEmpty(texto) && con != null)
+            {
+                SqlCommand com = ObtenerComando(con, texto, pars, tipo);
+                try
+                {
+                    if (con.State == ConnectionState.Closed) con.Open();
+                    ret = com.ExecuteScalar();
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+            return ret;
 
         }
 

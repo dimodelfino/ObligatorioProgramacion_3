@@ -42,8 +42,37 @@ namespace Distribuidora
         #endregion
 
         public override bool Borrar()
-        {            
-            throw new NotImplementedException();
+        {
+            bool ret = false;
+            SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
+            try
+            {
+                string sql = "UPDATE Producto SET Descontinuado=1 WHERE Nombre=@nombre;";
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
+                parametros.Add(parNombre);
+                con.Open();
+                tran = con.BeginTransaction();
+                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                if (afectadas > 0)
+                {
+                    ret = true;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return ret;
         }
 
         public Importado Buscar()
