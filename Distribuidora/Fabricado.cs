@@ -13,7 +13,7 @@ namespace Distribuidora
         private int tiempoFab;
         private string usuarioAlta;
         private int idFabricado;
-        private List<Tecnico> tecnicos;
+        private List<Empleado> empleados = new List<Empleado>();
 
         #region Properties
         public int TiempoFab
@@ -42,16 +42,16 @@ namespace Distribuidora
             }
         }
 
-        public List<Tecnico> Tecnicos
+        public List<Empleado> Empleados
         {
             get
             {
-                return tecnicos;
+                return empleados;
             }
 
             set
             {
-                tecnicos = value;
+                empleados = value;
             }
         }
 
@@ -71,9 +71,7 @@ namespace Distribuidora
         #endregion
 
         public override bool Borrar()
-        {
-            // TODO: Ver si se elimina de FabricadoFuncionarios, luego de Fabricados y despues de Producto o se crea un atributo en Fabricados que sea discontinuado
-            // xa q la BD sea persistente
+        {  
             bool ret = false;
             SqlConnection con = ObtenerConexion();
             SqlTransaction tran = null;
@@ -163,17 +161,18 @@ namespace Distribuidora
                 SqlParameter parDescripcion = new SqlParameter("@descripcion", this.Desc);
                 SqlParameter parCosto = new SqlParameter("@costo", this.Costo);
                 SqlParameter parPrecioSugerido = new SqlParameter("@precioSugerido", this.PrecioSugerido);
+
                 parametros.Add(parNombre);
                 parametros.Add(parDescripcion);
                 parametros.Add(parCosto);
                 parametros.Add(parPrecioSugerido);
+
                 con.Open();
                 tran = con.BeginTransaction();
-                int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
-                if (afectadas > 0) ret = true;
+            
+              //  int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                //if (afectadas > 0) ret = true;
 
-                // TODO Como hacer xa tener el id del producto y agregarlo a fabricado 
-                // Se puede poner el Insert con el Select en la consulta?
             }
             catch
             {
