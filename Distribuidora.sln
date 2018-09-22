@@ -4,11 +4,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distribuidora", "Distribuidora\Distribuidora.csproj", "{1FA99F87-FCAB-4F89-BD2D-2739BEB85200}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC} = {B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC}
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF", "IService\WCF.csproj", "{B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicioDistribuidora", "ServicioDistribuidora\ServicioDistribuidora.csproj", "{25CE4F7A-A044-425A-B292-A433373D5E75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +17,10 @@ Global
 		{1FA99F87-FCAB-4F89-BD2D-2739BEB85200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FA99F87-FCAB-4F89-BD2D-2739BEB85200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FA99F87-FCAB-4F89-BD2D-2739BEB85200}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8E89E99-74F1-4F94-A9EC-0FF3E1E37DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25CE4F7A-A044-425A-B292-A433373D5E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25CE4F7A-A044-425A-B292-A433373D5E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25CE4F7A-A044-425A-B292-A433373D5E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25CE4F7A-A044-425A-B292-A433373D5E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

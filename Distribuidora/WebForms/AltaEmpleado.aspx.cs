@@ -17,62 +17,19 @@ namespace Distribuidora
             {
                 Response.Redirect("Login.aspx");
             }
-            divTecnico.Visible = false;
-            if (chkBxTecnico.Checked)
-            {
-                divTecnico.Visible = true;
-            }
-        }
-
-        protected void chkBxTecnico_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkBxTecnico.Checked)
-            {
-                divTecnico.Visible = true;
-            }
-            else
-            {
-                divTecnico.Visible = false;
-            }
         }
 
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             if (IsValid && txtContreasena.Text != "" && txtMailEmpleado.Text != "")
             {
-                if (chkBxTecnico.Checked)
+                Empleado emp = new Empleado
                 {
-                    Tecnico tec = new Tecnico
-                    {
-                        Nombre = txtNombreEmpleado.Text,
-                        Email = txtMailEmpleado.Text,
-                        Contrasena = txtContreasena.Text,
-                        DescTarea = txtDescTarea.Text,
-                        TiempTarea = int.Parse(txtTiempTarea.Text)
-                    };
-                    if (tec.Buscar().Email == null)
-                    {
-                        if (tec.Crear())
-                        {
-                            lblMensajeEmpleado.Text = "El tecnico se dio de alta correctamente.";
-                        }
-                        else
-                        {
-                            lblMensajeEmpleado.Text = "El tecnico no se pudo dar de alta.";
-                        }
-                    }
-                    else
-                    {
-                        lblMensajeEmpleado.Text = "Ya existe un tecnico con ese email.";
-                    }
-                }
-                else
-                {
-                    Empleado emp = new Empleado
-                    {
-                        Nombre = txtNombreEmpleado.Text,
-                        Email = txtMailEmpleado.Text,
-                        Contrasena = txtContreasena.Text
+                    Nombre = txtNombreEmpleado.Text,
+                    Email = txtMailEmpleado.Text,
+                    Contrasena = txtContreasena.Text,
+                    Activo = true,
+                    Tecnico =  Convert.ToBoolean(chkBxTecnico),
                     };
                     if (emp.Buscar().Email == null)
                     {
@@ -87,10 +44,9 @@ namespace Distribuidora
                     }
                     else
                     {
-                        lblMensajeEmpleado.Text = "Ya existe un empleado con ese email";
+                        lblMensajeEmpleado.Text = "Ya existe un empleado con ese email.";
                     }
                 }
             }
         }
     }
-}

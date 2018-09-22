@@ -11,9 +11,9 @@ namespace Distribuidora
     public class Fabricado : Producto, IActiveRecord<Fabricado>
     {
         private int tiempoFab;
-        private string usuarioAlta;
+        private int usuarioAlta;
         private int idFabricado;
-        private List<Empleado> empleados = new List<Empleado>();
+        private List<Tecnico> tecnicos = new List<Tecnico>();
 
         #region Properties
         public int TiempoFab
@@ -29,7 +29,7 @@ namespace Distribuidora
             }
         }
 
-        public string UsuarioAlta
+        public int UsuarioAlta
         {
             get
             {
@@ -39,19 +39,6 @@ namespace Distribuidora
             set
             {
                 usuarioAlta = value;
-            }
-        }
-
-        public List<Empleado> Empleados
-        {
-            get
-            {
-                return empleados;
-            }
-
-            set
-            {
-                empleados = value;
             }
         }
 
@@ -68,8 +55,22 @@ namespace Distribuidora
             }
         }
 
+        public List<Tecnico> Tecnicos
+        {
+            get
+            {
+                return tecnicos;
+            }
+
+            set
+            {
+                tecnicos = value;
+            }
+        }
+
         #endregion
 
+        #region Metodos
         public override bool Borrar()
         {  
             bool ret = false;
@@ -82,7 +83,6 @@ namespace Distribuidora
                 SqlParameter parId = new SqlParameter("@idProducto", this.Id);
                 parametros.Add(parId);
                 con.Open();
-                tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0)
                 {
@@ -108,8 +108,8 @@ namespace Distribuidora
         {
             Fabricado fabricado = new Fabricado();
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE Nombre=@nombre";
-            SqlParameter par = new SqlParameter("@nombre", this.Nombre);
+            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE IdFabricado=@idFabricado";
+            SqlParameter par = new SqlParameter("@idFabricado", this.IdFabricado);
             SqlDataReader reader = null;
 
             try
@@ -119,17 +119,31 @@ namespace Distribuidora
                 if (reader.Read())
                 {
                     fabricado.tiempoFab = Convert.ToInt32(reader["TiempoFab"]);
-                    fabricado.usuarioAlta = reader["UsuarioAlta"].ToString();
-                    fabricado.Id = Convert.ToInt32(reader["IdProducto"]);
+                    fabricado.usuarioAlta = Convert.ToInt32(reader["usuarioAlta"]);
+                    fabricado.Id = this.Id;
                     fabricado.idFabricado = Convert.ToInt32(reader["IdFabricado"]);
-                    fabricado.Nombre = this.Nombre;
+                    fabricado.Nombre = reader["Nombre"].ToString(); 
                     fabricado.Desc = reader["Descripcion"].ToString();
                     fabricado.Costo = Convert.ToInt32(reader["Costo"]);
                     fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
-                    //TODO: Lista de tecnicos ??
                 }
 
+                sql = "SELECT * FROM FabricadoFuncionario WHERE IdProducto=@idProducto";
+                reader.Close();
+                reader=EjecutarConsulta(con, sql, new List<SqlParameter>() { new SqlParameter ("@idProducto", this.Id)}, CommandType.Text);
 
+                while (reader.Read())
+                {
+                    Tecnico tec = new Tecnico()
+                    {
+                        IdProducto = Convert.ToInt32(reader["IdProducto"]),
+                        IdEmpleado = Convert.ToInt32(reader["IdFuncionario"]),
+                        IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
+                        DescTarea = reader["DescTarea"].ToString(),
+                        TiempTarea = Convert.ToInt32(reader["TiempoTarea"])
+                    };
+                    this.tecnicos.Add(tec);
+                } 
             }
             catch
             {
@@ -147,7 +161,65 @@ namespace Distribuidora
                     con.Dispose();
                 }
             }
+            return fabricado;
+        }
 
+        public Fabricado BuscarPorNombre()
+        {
+            Fabricado fabricado = new Fabricado();
+            SqlConnection con = ObtenerConexion();
+            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE Nombre=@nombre";
+            SqlParameter par = new SqlParameter("@nombre", this.Nombre);
+            SqlDataReader reader = null;
+
+            try
+            {
+                reader = EjecutarConsulta(con, sql, new List<SqlParameter>() { par }, CommandType.Text);
+
+                if (reader.Read())
+                {
+                    fabricado.tiempoFab = Convert.ToInt32(reader["TiempoFab"]);
+                    fabricado.usuarioAlta = Convert.ToInt32(reader["usuarioAlta"]);
+                    fabricado.Id = Convert.ToInt32(reader["IdProducto"]);
+                    fabricado.idFabricado = Convert.ToInt32(reader["IdFabricado"]);
+                    fabricado.Nombre = this.Nombre;
+                    fabricado.Desc = reader["Descripcion"].ToString();
+                    fabricado.Costo = Convert.ToInt32(reader["Costo"]);
+                    fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
+                }
+                sql = "SELECT * FROM FabricadoFuncionario WHERE IdProducto=@idProducto";
+                reader.Close();
+                reader = EjecutarConsulta(con, sql, new List<SqlParameter>() { new SqlParameter("@idProducto", this.Id) }, CommandType.Text);
+
+                while (reader.Read())
+                {
+                    Tecnico tec = new Tecnico()
+                    {
+                        IdProducto = Convert.ToInt32(reader["IdProducto"]),
+                        IdEmpleado = Convert.ToInt32(reader["IdFuncionario"]),
+                        IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
+                        DescTarea = reader["DescTarea"].ToString(),
+                        TiempTarea = Convert.ToInt32(reader["TiempoTarea"])
+                    };
+                    this.tecnicos.Add(tec);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
             return fabricado;
         }
 
@@ -172,13 +244,29 @@ namespace Distribuidora
 
                 con.Open();
                 tran = con.BeginTransaction();
-            
-              //  int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
-                //if (afectadas > 0) ret = true;
+                this.Id = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
 
+                sql = "INSERT INTO Fabricado VALUES (@IdProducto, @TiempoFab, @UsuarioAlta)";
+                List<SqlParameter> parametrosFabricado = new List<SqlParameter>();
+                SqlParameter parFidProd = new SqlParameter("@IdProducto", this.Id);
+                SqlParameter parFtiempoFab = new SqlParameter("@TiempoFab", this.TiempoFab);
+                SqlParameter parFusuAlta = new SqlParameter("@UsuarioAlta", this.UsuarioAlta);
+
+                parametrosFabricado.Add(parFidProd);
+                parametrosFabricado.Add(parFtiempoFab);
+                parametrosFabricado.Add(parFusuAlta);
+ 
+                EjecutarNoConsulta(con, sql, parametrosFabricado, CommandType.Text, tran);
+
+                tran.Commit();
+                ret = true;
             }
             catch
             {
+                if (tran != null)
+                {
+                    tran.Rollback();
+                }
                 throw;
             }
             finally
@@ -194,12 +282,110 @@ namespace Distribuidora
 
         public override bool Modificar()
         {
-            throw new NotImplementedException();
+            bool ret = false;
+            SqlConnection con = ObtenerConexion();
+            SqlTransaction tran = null;
+            try
+            {
+                string sql = "UPDATE INTO Producto(Nombre, Descripcion, Costo, PrecioSugerido) VALUES(@nombre, @descripcion, @costo, @precioSugerido)";
+                List<SqlParameter> parametros = new List<SqlParameter>();
+                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
+                SqlParameter parDescripcion = new SqlParameter("@descripcion", this.Desc);
+                SqlParameter parCosto = new SqlParameter("@costo", this.Costo);
+                SqlParameter parPrecioSugerido = new SqlParameter("@precioSugerido", this.PrecioSugerido);
+
+                parametros.Add(parNombre);
+                parametros.Add(parDescripcion);
+                parametros.Add(parCosto);
+                parametros.Add(parPrecioSugerido);
+
+                con.Open();
+                tran = con.BeginTransaction();
+                EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+
+                sql = "UPDATE Fabricado SET @IdProducto=IdProducto , @TiempoFab=TiempoFab , @UsuarioAlta=UsuarioAlta)";
+                List<SqlParameter> parametrosFabricado = new List<SqlParameter>();
+                SqlParameter parFidProd = new SqlParameter("@IdProducto", this.Id);
+                SqlParameter parFtiempoFab = new SqlParameter("@descripcion", this.TiempoFab);
+                SqlParameter parFusuAlta = new SqlParameter("@costo", this.UsuarioAlta);
+
+                parametrosFabricado.Add(parFidProd);
+                parametrosFabricado.Add(parFtiempoFab);
+                parametrosFabricado.Add(parFusuAlta);
+
+                EjecutarNoConsulta(con, sql, parametrosFabricado, CommandType.Text, tran);
+
+                tran.Commit();
+                ret = true;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (tran != null)
+                {
+                    tran.Rollback();
+                }
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return ret;
         }
 
         public List<Fabricado> TraerTodo()
         {
-            throw new NotImplementedException();
+            List<Fabricado> fabricados = new List<Fabricado>();
+            SqlConnection con = ObtenerConexion();
+            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto";
+            SqlDataReader reader = null;
+            try
+            {
+                reader = EjecutarConsulta(con, sql, null, CommandType.Text);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Fabricado fab = new Fabricado()
+                        {
+                            IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
+                            Id = Convert.ToInt32(reader["IdProducto"]),
+                            tiempoFab = Convert.ToInt32(reader["tiepoFab"]),
+                            usuarioAlta = Convert.ToInt32(reader["usuarioAlta"]),
+                            Nombre = reader["Nombre"].ToString(),
+                            Desc = reader["Descripcion"].ToString(),
+                            Costo = Convert.ToInt32(reader["Costo"]),
+                            // TO DO VER COMO CONVERIT MONEY DE SQL EN COSTO Y PRECIO SUGERIDO DE PRODUCTO
+                            PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]),
+                            Descontinuado = Convert.ToBoolean(reader["Descontinuado"])
+                        };
+                        fabricados.Add(fab);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return fabricados;
         }
+        #endregion
     }
 }

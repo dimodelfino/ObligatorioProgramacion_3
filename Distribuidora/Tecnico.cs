@@ -103,6 +103,7 @@ namespace Distribuidora
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                tran.Commit();
                 if (afectadas > 0)
                 {
                     ret = true;
@@ -200,6 +201,7 @@ namespace Distribuidora
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                tran.Commit();
                 if (afectadas > 0)
                 {
                     ret = true;
@@ -245,7 +247,10 @@ namespace Distribuidora
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
-                if (afectadas > 0) ret = true;
+                tran.Commit();
+                if (afectadas > 0) {
+                    ret = true;
+                }
             }
             catch
             {

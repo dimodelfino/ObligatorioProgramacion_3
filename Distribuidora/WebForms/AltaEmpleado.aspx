@@ -29,19 +29,6 @@
     <asp:CheckBox ID="chkBxTecnico" runat="server" AutoPostBack="true" Checked="false" OnCheckedChanged="chkBxTecnico_CheckedChanged" Style="margin-left: 67px" Width="127px" />
     <br />
     <br />
-    <div runat="server" id="divTecnico">
-        <asp:Label ID="lblDescTarea" Style="margin-left: 10px" runat="server" Text="Descripcion Tarea "></asp:Label>
-        <asp:TextBox ID="txtDescTarea" Style="margin-left: 5px" Width="127px" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvDescTareaTecnico" runat="server" ControlToValidate="txtDescTarea" EnableClientScript="false" ErrorMessage="Debe ingresar una descripcion." Font-Bold="true" ForeColor="Red" Display="Dynamic" />
-        <br />
-        <br />
-        <asp:Label ID="lblTiempTarea" Style="margin-left: 10px" runat="server" Text="Tiempo Tarea "></asp:Label>
-        <asp:TextBox ID="txtTiempTarea" Style="margin-left: 31px" Width="127px" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="rfvTiempTareaTecnico" runat="server" ControlToValidate="txtTiempTarea" EnableClientScript="false" ErrorMessage="Debe ingresar el tiempo de la tarea." Font-Bold="true" ForeColor="Red" Display="Dynamic" />
-        <asp:CompareValidator ID="cmpvTiempoTareaMayorCero" runat="server" ControlToValidate="txtTiempTarea" Operator="GreaterThanEqual" ValueToCompare="0" Type="Integer" ErrorMessage="El tiempo debe ser mayor a cero. " Font-Bold="true" ForeColor="Red" Display="Dynamic"/>
-    </div>
-    <br />
-    <br />
     <asp:Label ID="lblMensajeEmpleado" runat="server" Style="margin-bottom: 30px; margin-left: 20px;" Text="" Font-Bold="True" Font-Size="0.9em"></asp:Label>
     <br />
     <asp:Button ID="btnAgregarEmpleado" runat="server" Text="Agregar Usuario" Style="margin-top: 20px; margin-left: 10px" OnClick="btnAgregarEmpleado_Click"/>

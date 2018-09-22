@@ -82,6 +82,21 @@ namespace Distribuidora
                 idEmpleado = value;
             }
         }
+
+        public bool Tecnico
+        {
+            get
+            {
+                return tecnico;
+            }
+
+            set
+            {
+                tecnico = value;
+            }
+        }
+
+        
         #endregion
 
         #region Metodos
