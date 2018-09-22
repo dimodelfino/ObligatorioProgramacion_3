@@ -9,10 +9,12 @@ using System.Configuration;
 
 namespace Distribuidora
 {
-    public class Tecnico : Empleado, IActiveRecord<Tecnico>
+    public class Tecnico : Persistente, IActiveRecord<Tecnico>
     {
         private string descTarea;
         private int tempTarea;
+        private int idProducto;
+        private int idEmpleado;
 
         #region Properties
         public string DescTarea

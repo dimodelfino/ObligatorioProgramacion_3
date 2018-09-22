@@ -79,10 +79,10 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "UPDATE Producto SET Descontinuado=1 WHERE Nombre=@nombre;";
+                string sql = "UPDATE Producto SET Descontinuado=1 WHERE IdProducto=@idProducto;";
                 List<SqlParameter> parametros = new List<SqlParameter>();
-                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
-                parametros.Add(parNombre);
+                SqlParameter parId = new SqlParameter("@idProducto", this.Id);
+                parametros.Add(parId);
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
@@ -110,7 +110,7 @@ namespace Distribuidora
         {
             Fabricado fabricado = new Fabricado();
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE Producto.Nombre = @nombre";
+            string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE Nombre=@nombre";
             SqlParameter par = new SqlParameter("@nombre", this.Nombre);
             SqlDataReader reader = null;
 
@@ -122,13 +122,16 @@ namespace Distribuidora
                 {
                     fabricado.tiempoFab = Convert.ToInt32(reader["TiempoFab"]);
                     fabricado.usuarioAlta = reader["UsuarioAlta"].ToString();
-                    fabricado.Id = Convert.ToInt32(reader["IdFabricado"]);
+                    fabricado.Id = Convert.ToInt32(reader["IdProducto"]);
+                    fabricado.idFabricado = Convert.ToInt32(reader["IdFabricado"]);
                     fabricado.Nombre = this.Nombre;
                     fabricado.Desc = reader["Descripcion"].ToString();
                     fabricado.Costo = Convert.ToInt32(reader["Costo"]);
                     fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
                     //TODO: Lista de tecnicos ??
                 }
+
+
             }
             catch
             {

@@ -15,6 +15,7 @@ namespace Distribuidora
         private string contrasena;
         private int idEmpleado;
         private bool activo;
+        private bool tecnico;
 
         #region Properties
         public string Nombre
