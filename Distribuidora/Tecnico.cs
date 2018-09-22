@@ -15,6 +15,7 @@ namespace Distribuidora
         private int tempTarea;
         private int idProducto;
         private int idEmpleado;
+        private int idFabricado;
 
         #region Properties
         public string DescTarea
@@ -42,6 +43,45 @@ namespace Distribuidora
                 tempTarea = value;
             }
         }
+
+        public int IdFabricado
+        {
+            get
+            {
+                return idFabricado;
+            }
+
+            set
+            {
+                idFabricado = value;
+            }
+        }
+
+        public int IdEmpleado
+        {
+            get
+            {
+                return idEmpleado;
+            }
+
+            set
+            {
+                idEmpleado = value;
+            }
+        }
+
+        public int IdProducto
+        {
+            get
+            {
+                return idProducto;
+            }
+
+            set
+            {
+                idProducto = value;
+            }
+        }
         #endregion
 
         #region Metodos
@@ -52,10 +92,14 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "UPDATE Funcionario SET Activo=0 where Email=@email;";
+                string sql = "DELETE from FabricadoFuncionario where idFabricado=@idFabricado and idProdructo=@idProdructo and idFuncionario=@idFuncionario;";
                 List<SqlParameter> parametros = new List<SqlParameter>();
-                SqlParameter parMail = new SqlParameter("@mail", this.Email);
-                parametros.Add(parMail);
+                SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
+                SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
+                SqlParameter parIdFuncionario = new SqlParameter("@idFuncionario", this.idEmpleado);
+                parametros.Add(parIdFabricado);
+                parametros.Add(parIdProducto);
+                parametros.Add(parIdFuncionario);
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
@@ -66,6 +110,10 @@ namespace Distribuidora
             }
             catch
             {
+                if (tran != null)
+                {
+                    tran.Rollback();
+                }
                 throw;
             }
             finally
@@ -83,20 +131,29 @@ namespace Distribuidora
         {
             Tecnico tec = new Tecnico();
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT * FROM Funcionario WHERE Email = @mail AND Activo=1;";
-            SqlParameter par = new SqlParameter("@mail", this.Email);
+            string sql = "SELECT * FROM FabricadoFuncionario WHERE idFabricado=@idFabricado, idProducto=@idPRoducto, idFuncionario=@idFuncionario";
+            List <SqlParameter> parametros = new List <SqlParameter>();
+            SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
+            SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
+            SqlParameter parIdFuncionario = new SqlParameter("@idFuncionario", this.idEmpleado);
+            SqlParameter parDescTarea = new SqlParameter("@DescTarea", this.DescTarea);
+            SqlParameter parTiempTarea = new SqlParameter("@TiempoTarea", this.TiempTarea);
+            parametros.Add(parIdFabricado);
+            parametros.Add(parIdProducto);
+            parametros.Add(parIdFuncionario);
+            parametros.Add(parDescTarea);
+            parametros.Add(parTiempTarea);
+            con.Open();
             SqlDataReader reader = null;
             try
             {
-                reader = EjecutarConsulta(con, sql, new List<SqlParameter>() { par }, CommandType.Text);
+                reader = EjecutarConsulta(con, sql, parametros, CommandType.Text);
 
                 if (reader.Read())
                 {
-                    tec.Nombre = reader["Nombre"].ToString();
-                    tec.Contrasena = reader["Contrasena"].ToString();                   
-                    tec.IdEmpleado = Convert.ToInt32(reader["IdFuncionario"]);
-                    tec.Activo = Convert.ToBoolean(reader["Activo"]);
-                    tec.Email = this.Email;
+                    tec.idProducto = Convert.ToInt32(reader["IdProducto"]);
+                    tec.idEmpleado = Convert.ToInt32(reader["IdFuncionario"]);
+                    tec.IdFabricado = Convert.ToInt32(reader["IdFabricado"]);
                     tec.descTarea = reader["DescTarea"].ToString();
                     tec.tempTarea = Convert.ToInt32(reader["TiempoTarea"]);
                 }
@@ -122,31 +179,37 @@ namespace Distribuidora
         }
 
         public bool Crear()
-        {            
+        {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
             SqlTransaction tran = null;
             try
             {
-                string sql = "INSERT INTO Funcionario VALUES(@nom, @contrasena, @mail, @descTarea, @tiempoTarea, 1, 'T')";                    
+                string sql = "INSERT INTO FabricadoFuncionario VALUES( @idFabricado, @idProducto, @idFuncionario, @descTareas, @tiempoTareas)";
                 List<SqlParameter> parametros = new List<SqlParameter>();
-                SqlParameter parNom = new SqlParameter("@nom", this.Nombre);
-                SqlParameter parPass = new SqlParameter("@contrasena", this.Contrasena);
-                SqlParameter parMail = new SqlParameter("@mail", this.Email);
-                SqlParameter parDesc = new SqlParameter("@DescTarea", this.DescTarea);                
+                SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
+                SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
+                SqlParameter parIdFuncionario = new SqlParameter("@idFuncionario", this.idEmpleado);
+                SqlParameter parDescTarea = new SqlParameter("@DescTarea", this.DescTarea);
                 SqlParameter parTiempTarea = new SqlParameter("@TiempoTarea", this.TiempTarea);
-                parametros.Add(parNom);
-                parametros.Add(parPass);
-                parametros.Add(parMail);                
-                parametros.Add(parDesc);                
+                parametros.Add(parIdFabricado);
+                parametros.Add(parIdProducto);
+                parametros.Add(parIdFuncionario);
+                parametros.Add(parDescTarea);
                 parametros.Add(parTiempTarea);
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
-                if (afectadas > 0) ret = true;
+                if (afectadas > 0)
+                {
+                    ret = true;
+                }
             }
             catch
             {
+                if (tran != null) {
+                    tran.Rollback();
+                }
                 throw;
             }
             finally
@@ -167,16 +230,16 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "UPDATE Funcionario SET Email=@email, Nombre=@nombre, Contrasena=@contrasena, DescTarea=@descTarea, TiempoTarea=@tiempoTarea WHERE Email=@email;";
+                string sql = "UPDATE FabricadoFuncionario SET DescTarea=@descTarea, TiempoTarea=@tiempoTarea WHERE idFabricado=@idFabricado, idProducto=@idProducto, idFuncionario=@idFuncionario; ";
                 List<SqlParameter> parametros = new List<SqlParameter>();
-                SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
-                SqlParameter parContrasena = new SqlParameter("@contrasena", this.Contrasena);
-                SqlParameter parMail = new SqlParameter("@email", this.Email);
+                SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
+                SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
+                SqlParameter parIdFuncionario = new SqlParameter("@idFuncionario", this.idEmpleado);
                 SqlParameter DescTarea = new SqlParameter("@descTarea", this.descTarea);
                 SqlParameter TiempoTarea = new SqlParameter("@tiempoTarea", this.tempTarea);
-                parametros.Add(parNombre);
-                parametros.Add(parContrasena);
-                parametros.Add(parMail);
+                parametros.Add(parIdFabricado);
+                parametros.Add(parIdProducto);
+                parametros.Add(parIdFuncionario);
                 parametros.Add(DescTarea);
                 parametros.Add(TiempoTarea);
                 con.Open();
@@ -186,6 +249,10 @@ namespace Distribuidora
             }
             catch
             {
+                if (tran != null)
+                {
+                    tran.Rollback();
+                }
                 throw;
             }
             finally
@@ -196,7 +263,6 @@ namespace Distribuidora
                     con.Dispose();
                 }
             }
-
             return ret;
         }
 
@@ -204,7 +270,7 @@ namespace Distribuidora
         {
             List<Tecnico> tecnicos = new List<Tecnico>();
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT * FROM Funcionario WHERE Activo=1 AND Tipo = 'T'";
+            string sql = "SELECT * FROM FabricadoFuncionario";
             SqlDataReader reader = null;
             try
             {
@@ -216,9 +282,8 @@ namespace Distribuidora
                         Tecnico tec = new Tecnico()
                         {
                             IdEmpleado = Convert.ToInt32(reader["IdFuncionario"]),
-                            Nombre = reader["Nombre"].ToString(),
-                            Contrasena = reader["Contrasena"].ToString(),
-                            Email = reader["Email"].ToString(),
+                            IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
+                            IdProducto = Convert.ToInt32(reader["IdProducto"]),
                             descTarea = reader["DescTarea"].ToString(),
                             TiempTarea = Convert.ToInt32(reader["TiempoTarea"])                           
                         };
