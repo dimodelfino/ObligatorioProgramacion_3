@@ -184,7 +184,7 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "INSERT INTO Producto(Nombre, Descripcion, Costo, PrecioSugerido) VALUES(@nombre, @descripcion, @costo, @precioSugerido) SELECT scope_identity()AS IdProd";
+                string sql = "INSERT INTO Producto(Nombre, Descripcion, Costo, PrecioSugerido, Descontinuado) VALUES(@nombre, @descripcion, @costo, @precioSugerido, 0) SELECT scope_identity()AS IdProd";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parNombre = new SqlParameter("@nombre", this.Nombre);
                 SqlParameter parDescripcion = new SqlParameter("@descripcion", this.Desc);
@@ -198,7 +198,7 @@ namespace Distribuidora
 
                 con.Open();
                 tran = con.BeginTransaction();
-                this.Id = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+                this.Id = Convert.ToInt32(EjecutarEscalar(con, sql, parametros, CommandType.Text, tran));
 
                 sql = "INSERT INTO Importados VALUES (@IdProducto, @Origen, @CantImportacion)";
                 List<SqlParameter> parametrosImportado = new List<SqlParameter>();

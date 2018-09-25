@@ -11,7 +11,14 @@ namespace Distribuidora.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Funcionario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
 
+            Fabricado fab = new Fabricado();
+            grdVwProductosFab.DataSource = fab.TraerTodo();
+            grdVwProductosFab.DataBind();
         }
     }
 }

@@ -112,6 +112,42 @@ namespace Distribuidora.WebForms {
         protected global::System.Web.UI.WebControls.CompareValidator cmpvCostoProd;
         
         /// <summary>
+        /// lblPrecioSugerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPrecioSugerido;
+        
+        /// <summary>
+        /// txtPrecioSugerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrecioSugerido;
+        
+        /// <summary>
+        /// rfvPrecioSugerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPrecioSugerido;
+        
+        /// <summary>
+        /// cmpvPrecioSugerido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvPrecioSugerido;
+        
+        /// <summary>
         /// rbtnListTipoProd control.
         /// </summary>
         /// <remarks>

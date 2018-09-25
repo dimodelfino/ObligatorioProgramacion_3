@@ -26,10 +26,10 @@
     <br />
     <br />
     <asp:Label ID="lblTecnico" Style="margin-left: 10px" runat="server" Text="Tecnico"></asp:Label>
-    <asp:CheckBox ID="chkBxTecnico" runat="server" AutoPostBack="true" Checked="false" OnCheckedChanged="chkBxTecnico_CheckedChanged" Style="margin-left: 67px" Width="127px" />
+    <asp:CheckBox ID="chkBxTecnico" runat="server" AutoPostBack="true" Checked="false" Style="margin-left: 67px" Width="127px" />
     <br />
     <br />
     <asp:Label ID="lblMensajeEmpleado" runat="server" Style="margin-bottom: 30px; margin-left: 20px;" Text="" Font-Bold="True" Font-Size="0.9em"></asp:Label>
     <br />
-    <asp:Button ID="btnAgregarEmpleado" runat="server" Text="Agregar Usuario" Style="margin-top: 20px; margin-left: 10px" OnClick="btnAgregarEmpleado_Click"/>
+    <asp:Button ID="btnAgregarEmpleado" runat="server" Text="Agregar Empleado" Style="margin-top: 20px; margin-left: 10px" OnClick="btnAgregarEmpleado_Click"/>
 </asp:Content>

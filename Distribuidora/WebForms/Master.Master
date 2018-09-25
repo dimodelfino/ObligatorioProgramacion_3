@@ -25,7 +25,8 @@
                 <li><a href="ListadoFabricados.aspx">Listado De Productos Fabricados/RF01-03</a></li>                
                 <li><a href="AltaEmpleado.aspx">Alta Empleados/RF01-04</a></li>                
                 <li><a href="ListProdPorTipo.aspx">Listado De Productos Filtrado Por Tipo/RF01-05</a></li>                
-                <li><a href="TxtProd.aspx">Listado De Productos Txt/RF01-06</a></li>                
+                <li><a href="TxtProd.aspx">Listado De Productos Txt/RF01-06</a></li>
+                <li><a href="Login.aspx">Salir</a></li>                
             </ul>
         </asp:ContentPlaceHolder>
 

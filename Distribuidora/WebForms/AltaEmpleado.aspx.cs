@@ -23,30 +23,31 @@ namespace Distribuidora
         {
             if (IsValid && txtContreasena.Text != "" && txtMailEmpleado.Text != "")
             {
-                Empleado emp = new Empleado
+                Empleado emp = new Empleado()
                 {
                     Nombre = txtNombreEmpleado.Text,
                     Email = txtMailEmpleado.Text,
                     Contrasena = txtContreasena.Text,
                     Activo = true,
-                    Tecnico =  Convert.ToBoolean(chkBxTecnico),
-                    };
-                    if (emp.Buscar().Email == null)
+                    Tipo = "E"
+                };
+                if (chkBxTecnico.Checked) emp.Tipo = "T";
+                if (emp.Buscar().Email == null)
+                {
+                    if (emp.Crear())
                     {
-                        if (emp.Crear())
-                        {
-                            lblMensajeEmpleado.Text = "El empleado se pudo dar de alta correctamente.";
-                        }
-                        else
-                        {
-                            lblMensajeEmpleado.Text = "El empleado no se pudo dar de alta.";
-                        }
+                        lblMensajeEmpleado.Text = "El empleado se pudo dar de alta correctamente.";
                     }
                     else
                     {
-                        lblMensajeEmpleado.Text = "Ya existe un empleado con ese email.";
+                        lblMensajeEmpleado.Text = "El empleado no se pudo dar de alta.";
                     }
+                }
+                else
+                {
+                    lblMensajeEmpleado.Text = "Ya existe un empleado con ese email.";
                 }
             }
         }
     }
+}

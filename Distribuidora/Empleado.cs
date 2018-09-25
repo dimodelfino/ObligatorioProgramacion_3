@@ -15,7 +15,7 @@ namespace Distribuidora
         private string contrasena;
         private int idEmpleado;
         private bool activo;
-        private bool tecnico;
+        private string tipo;
 
         #region Properties
         public string Nombre
@@ -83,16 +83,16 @@ namespace Distribuidora
             }
         }
 
-        public bool Tecnico
+        public string Tipo
         {
             get
             {
-                return tecnico;
+                return tipo;
             }
 
             set
             {
-                tecnico = value;
+                tipo = value;
             }
         }
 
@@ -181,18 +181,21 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "INSERT INTO Funcionario(Nombre, Email, Contrasena, Activo, Tipo) VALUES(@nom, @mail, @contrasena, 1, 'E')";
+                string sql = "INSERT INTO Funcionario(Nombre, Email, Contrasena, Activo, Tipo) VALUES(@nom, @mail, @contrasena, 1, @tipo)";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parNom = new SqlParameter("@nom", this.nombre);
                 SqlParameter parMail = new SqlParameter("@mail", this.email);
                 SqlParameter parConstrasena = new SqlParameter("@contrasena", this.contrasena);
+                SqlParameter parTipo = new SqlParameter("@tipo", this.tipo);
                 parametros.Add(parNom);
                 parametros.Add(parMail);
-                parametros.Add(parConstrasena);
+                parametros.Add(parConstrasena);                
+                parametros.Add(parTipo);
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
                 if (afectadas > 0) ret = true;
+                tran.Commit();
             }
             catch
             {
@@ -249,7 +252,7 @@ namespace Distribuidora
         {
             List<Empleado> personas = new List<Empleado>();
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT Nombre, Contrasena, Email, IdFuncionario FROM Funcionario WHERE Activo=1 AND Tipo = 'E'";
+            string sql = "SELECT Nombre, Contrasena, Email, IdFuncionario FROM Funcionario WHERE Activo=1";
             SqlDataReader reader = null;
             try
             {

@@ -60,7 +60,7 @@ namespace Distribuidora
 
         }
 
-        public object EjecutarEscalar(SqlConnection con, string texto, List<SqlParameter> pars, CommandType tipo)
+        public object EjecutarEscalar(SqlConnection con, string texto, List<SqlParameter> pars, CommandType tipo, SqlTransaction trans)
         {
             object ret = null;
             if (!string.IsNullOrEmpty(texto) && con != null)
@@ -69,6 +69,7 @@ namespace Distribuidora
                 try
                 {
                     if (con.State == ConnectionState.Closed) con.Open();
+                    if (trans != null) com.Transaction = trans;
                     ret = com.ExecuteScalar();
                 }
                 catch

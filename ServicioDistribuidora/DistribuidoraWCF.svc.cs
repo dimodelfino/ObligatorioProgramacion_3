@@ -51,12 +51,14 @@ namespace ServicioDistribuidora
 
         public bool altaEmpleado(string nombre, string contrasena, string email, bool tipo)
         {
+            string tipoEmp = "E";
+            if (tipo) tipoEmp = "T";
             Empleado emp = new Empleado()
             {
                 Nombre = nombre,
                 Contrasena = contrasena,
                 Email = email,
-                Tecnico = tipo,
+                Tipo = tipoEmp,
             };
             return emp.Crear();
         }
