@@ -354,7 +354,7 @@ namespace Distribuidora
                         {
                             IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
                             Id = Convert.ToInt32(reader["IdProducto"]),
-                            tiempoFab = Convert.ToInt32(reader["tiepoFab"]),
+                            tiempoFab = Convert.ToInt32(reader["tiempoFab"]),
                             usuarioAlta = Convert.ToInt32(reader["usuarioAlta"]),
                             Nombre = reader["Nombre"].ToString(),
                             Desc = reader["Descripcion"].ToString(),

@@ -287,6 +287,86 @@ namespace Distribuidora
             }
             return personas;
         }
+
+        public List<Empleado> TraerTodoTecnicos()
+        {
+            List<Empleado> personas = new List<Empleado>();
+            SqlConnection con = ObtenerConexion();
+            string sql = "SELECT Nombre, Contrasena, Email, IdFuncionario FROM Funcionario WHERE Activo=1 AND Tipo = 'T'";
+            SqlDataReader reader = null;
+            try
+            {
+                reader = EjecutarConsulta(con, sql, null, CommandType.Text);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Empleado emp = new Empleado()
+                        {
+                            Nombre = reader["Nombre"].ToString(),
+                            Contrasena = reader["Contrasena"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            IdEmpleado = Convert.ToInt32(reader["IdFuncionario"])
+                        };
+                        personas.Add(emp);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return personas;
+        }
+
+        public List<Empleado> TraerTodoEmpleados()
+        {
+            List<Empleado> personas = new List<Empleado>();
+            SqlConnection con = ObtenerConexion();
+            string sql = "SELECT Nombre, Contrasena, Email, IdFuncionario FROM Funcionario WHERE Activo=1 AND Tipo = 'E'";
+            SqlDataReader reader = null;
+            try
+            {
+                reader = EjecutarConsulta(con, sql, null, CommandType.Text);
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Empleado emp = new Empleado()
+                        {
+                            Nombre = reader["Nombre"].ToString(),
+                            Contrasena = reader["Contrasena"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            IdEmpleado = Convert.ToInt32(reader["IdFuncionario"])
+                        };
+                        personas.Add(emp);
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null) reader.Close();
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return personas;
+        }
         #endregion
     }
 }
