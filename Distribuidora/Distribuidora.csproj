@@ -114,7 +114,6 @@
     <Content Include="WebForms\AltaProductos.aspx" />
     <Content Include="WebForms\AsignarTecnico.aspx" />
     <Content Include="WebForms\ListadoFabricados.aspx" />
-    <Content Include="WebForms\ListadoProdTipo.aspx" />
     <Content Include="WebForms\ListProdPorTipo.aspx" />
     <Content Include="WebForms\Styles.css" />
     <Content Include="WebForms\WelcomePage.aspx" />
@@ -183,13 +182,6 @@
     </Compile>
     <Compile Include="WebForms\ListadoFabricados.aspx.designer.cs">
       <DependentUpon>ListadoFabricados.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForms\ListadoProdTipo.aspx.cs">
-      <DependentUpon>ListadoProdTipo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms\ListadoProdTipo.aspx.designer.cs">
-      <DependentUpon>ListadoProdTipo.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\ListProdPorTipo.aspx.cs">
       <DependentUpon>ListProdPorTipo.aspx</DependentUpon>

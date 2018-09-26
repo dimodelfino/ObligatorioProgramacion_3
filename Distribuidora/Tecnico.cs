@@ -12,7 +12,7 @@ namespace Distribuidora
     public class Tecnico : Persistente, IActiveRecord<Tecnico>
     {
         private string descTarea;
-        private int tempTarea;
+        private int tiempTarea;
         private int idProducto;
         private int idEmpleado;
         private int idFabricado;
@@ -35,12 +35,12 @@ namespace Distribuidora
         {
             get
             {
-                return tempTarea;
+                return tiempTarea;
             }
 
             set
             {
-                tempTarea = value;
+                tiempTarea = value;
             }
         }
 
@@ -130,20 +130,16 @@ namespace Distribuidora
 
         public Tecnico Buscar()
         {
-            Tecnico tec = new Tecnico();
+            Tecnico tec = null;
             SqlConnection con = ObtenerConexion();
-            string sql = "SELECT * FROM FabricadoFuncionario WHERE idFabricado=@idFabricado, idProducto=@idPRoducto, idFuncionario=@idFuncionario";
+            string sql = "SELECT * FROM FabricadoFuncionario WHERE idFabricado=@idFabricado AND idProducto=@idPRoducto AND idFuncionario=@idFuncionario";
             List <SqlParameter> parametros = new List <SqlParameter>();
             SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
             SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
             SqlParameter parIdFuncionario = new SqlParameter("@idFuncionario", this.idEmpleado);
-            SqlParameter parDescTarea = new SqlParameter("@DescTarea", this.DescTarea);
-            SqlParameter parTiempTarea = new SqlParameter("@TiempoTarea", this.TiempTarea);
             parametros.Add(parIdFabricado);
             parametros.Add(parIdProducto);
-            parametros.Add(parIdFuncionario);
-            parametros.Add(parDescTarea);
-            parametros.Add(parTiempTarea);
+            parametros.Add(parIdFuncionario);            
             con.Open();
             SqlDataReader reader = null;
             try
@@ -152,11 +148,12 @@ namespace Distribuidora
 
                 if (reader.Read())
                 {
+                    tec = new Tecnico();
                     tec.idProducto = Convert.ToInt32(reader["IdProducto"]);
                     tec.idEmpleado = Convert.ToInt32(reader["IdFuncionario"]);
                     tec.IdFabricado = Convert.ToInt32(reader["IdFabricado"]);
                     tec.descTarea = reader["DescTarea"].ToString();
-                    tec.tempTarea = Convert.ToInt32(reader["TiempoTarea"]);
+                    tec.tiempTarea = Convert.ToInt32(reader["TiempoTarea"]);
                 }
             }
             catch
@@ -186,7 +183,7 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "INSERT INTO FabricadoFuncionario VALUES( @idFabricado, @idProducto, @idFuncionario, @descTareas, @tiempoTareas)";
+                string sql = "INSERT INTO FabricadoFuncionario VALUES( @idFabricado, @idProducto, @idFuncionario, @descTarea, @tiempoTarea)";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
                 SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
@@ -238,7 +235,7 @@ namespace Distribuidora
                 SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
                 SqlParameter parIdFuncionario = new SqlParameter("@idFuncionario", this.idEmpleado);
                 SqlParameter DescTarea = new SqlParameter("@descTarea", this.descTarea);
-                SqlParameter TiempoTarea = new SqlParameter("@tiempoTarea", this.tempTarea);
+                SqlParameter TiempoTarea = new SqlParameter("@tiempoTarea", this.tiempTarea);
                 parametros.Add(parIdFabricado);
                 parametros.Add(parIdProducto);
                 parametros.Add(parIdFuncionario);

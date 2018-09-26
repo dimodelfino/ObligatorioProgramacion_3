@@ -305,12 +305,15 @@ namespace Distribuidora
                     while (reader.Read())
                     {
                         Importado imp = new Importado()
-                        {
-                            IdImportado = Convert.ToInt32(reader["IdFabricado"]),
+                        {                            
+                            Nombre = reader["Nombre"].ToString(),
+                            Desc = reader["Descripcion"].ToString(),
+                            Costo = Convert.ToInt32(reader["Costo"]),
+                            PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]),
+                            IdImportado = Convert.ToInt32(reader["IdImportados"]),
                             Id = Convert.ToInt32(reader["IdProducto"]),
                             Origen = reader["Origen"].ToString(),
-                            CantImportacion = Convert.ToInt32(reader["CantImportacion"]),
-              
+                            CantImportacion = Convert.ToInt32(reader["CantImportacion"]),                            
                         };
                         importados.Add(imp);
                     }

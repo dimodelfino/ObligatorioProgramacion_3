@@ -14,7 +14,7 @@
     <div>
         <asp:ContentPlaceHolder ID="cphMenuInvitado" runat="server">
             <ul>                
-                <li><a class="active" href="ListadoProdTipo.aspx">Listado De Productos Filtrado Por Tipo/RF01-05</a></li>
+                <li><a class="active" href="ListProdPorTipo.aspx">Listado De Productos Filtrado Por Tipo/RF01-05</a></li>
             </ul>
         </asp:ContentPlaceHolder>
 

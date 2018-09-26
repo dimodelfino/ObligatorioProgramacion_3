@@ -94,13 +94,13 @@ namespace Distribuidora.WebForms {
         protected global::System.Web.UI.WebControls.Label lblTiempoRealizacion;
         
         /// <summary>
-        /// txtTempoRealizacion control.
+        /// txtTiempoRealizacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTempoRealizacion;
+        protected global::System.Web.UI.WebControls.TextBox txtTiempoRealizacion;
         
         /// <summary>
         /// rfvTiempoRealizacion control.
@@ -119,6 +119,15 @@ namespace Distribuidora.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CompareValidator cmpvTiempoRealizacion;
+        
+        /// <summary>
+        /// lblMensajeAsigTecnico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeAsigTecnico;
         
         /// <summary>
         /// btnAsignarTecnico control.

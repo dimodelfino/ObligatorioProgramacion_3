@@ -19,9 +19,9 @@
                 <asp:BoundField DataField="desc" HeaderText="Descripción" />
             </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" BorderWidth="2" BorderColor="black"/>
             <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" HorizontalAlign ="Center" BorderWidth="2" BorderColor="black" />
             <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
             <SortedAscendingCellStyle BackColor="#FDF5AC" />
             <SortedAscendingHeaderStyle BackColor="#4D0000" />
@@ -45,9 +45,9 @@
                 <asp:BoundField DataField="email" HeaderText="Email" />
             </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" BorderWidth="2" BorderColor="black"/>
             <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" HorizontalAlign ="Center" BorderWidth="2" BorderColor="black"/>
             <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
             <SortedAscendingCellStyle BackColor="#FDF5AC" />
             <SortedAscendingHeaderStyle BackColor="#4D0000" />
@@ -65,9 +65,12 @@
     <br />
     <br />
     <asp:Label ID="lblTiempoRealizacion" runat="server" Text="Tiempo de Realizacion de la Tarea"></asp:Label>
-    <asp:TextBox ID="txtTempoRealizacion" runat="server" Width="127px"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="rfvTiempoRealizacion" runat="server" ControlToValidate="txtTempoRealizacion" EnableClientScript="false" ErrorMessage="Debe ingresar un tiempo de realizacion de la tarea." Font-Bold="true" ForeColor="Red" Display="Dynamic" />
-    <asp:CompareValidator ID="cmpvTiempoRealizacion" runat="server" ControlToValidate="txtTempoRealizacion" Operator="GreaterThanEqual" ValueToCompare="0" Type="Integer" ErrorMessage="El tiempo de realizacion debe ser mayor a cero. " Font-Bold="true" ForeColor="Red" Display="Dynamic" />
+    <asp:TextBox ID="txtTiempoRealizacion" runat="server" Width="127px"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="rfvTiempoRealizacion" runat="server" ControlToValidate="txtTiempoRealizacion" EnableClientScript="false" ErrorMessage="Debe ingresar un tiempo de realizacion de la tarea." Font-Bold="true" ForeColor="Red" Display="Dynamic" />
+    <asp:CompareValidator ID="cmpvTiempoRealizacion" runat="server" ControlToValidate="txtTiempoRealizacion" Operator="GreaterThanEqual" ValueToCompare="0" Type="Integer" ErrorMessage="El tiempo de realizacion debe ser mayor a cero. " Font-Bold="true" ForeColor="Red" Display="Dynamic" />
+    <br />
+    <br />
+    <asp:Label ID="lblMensajeAsigTecnico" runat="server"></asp:Label>
     <br />
     <asp:Button ID="btnAsignarTecnico" runat="server" Text="Asignar Tecnico" Style="margin-top: 20px;" OnClick="btnAsignarTecnico_Click" />
 </asp:Content>
