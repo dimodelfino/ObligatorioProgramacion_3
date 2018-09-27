@@ -26,7 +26,7 @@ namespace Distribuidora.WebForms
 
         protected void rbtnLstTipoProd_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.rbtnLstTipoProd.SelectedValue == "Fabricado")
+            if (this.rbtnLstTipoProd.SelectedValue == "Fabricado") 
             {
                 divGrdVwFabricados.Visible = true;
                 divGrdVwImportados.Visible = false;                
