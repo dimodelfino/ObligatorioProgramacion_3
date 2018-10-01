@@ -147,6 +147,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TxtHandler.cs" />
     <Compile Include="WebForms\AltaEmpleado.aspx.cs">
       <DependentUpon>AltaEmpleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
