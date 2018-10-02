@@ -16,6 +16,7 @@
                 <asp:BoundField DataField="idFabricado" HeaderText="IdFabricado" Visible="False" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="tiempoFab" HeaderText="Tiempo Previsto de Fabricación" />
+                <asp:BoundField DataField="TiempoRestante" HeaderText="Tiempo Restante de Fabricación" />
                 <asp:BoundField DataField="desc" HeaderText="Descripción" />
             </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -70,7 +71,7 @@
     <asp:CompareValidator ID="cmpvTiempoRealizacion" runat="server" ControlToValidate="txtTiempoRealizacion" Operator="GreaterThanEqual" ValueToCompare="0" Type="Integer" ErrorMessage="El tiempo de realizacion debe ser mayor a cero. " Font-Bold="true" ForeColor="Red" Display="Dynamic" />
     <br />
     <br />
-    <asp:Label ID="lblMensajeAsigTecnico" runat="server"></asp:Label>
+    <asp:Label ID="lblMensajeAsigTecnico" runat="server" Font-Bold="true" ForeColor="Red" Display="Dynamic" ></asp:Label>
     <br />
     <asp:Button ID="btnAsignarTecnico" runat="server" Text="Asignar Tecnico" Style="margin-top: 20px;" OnClick="btnAsignarTecnico_Click" />
 </asp:Content>

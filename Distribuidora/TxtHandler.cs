@@ -10,11 +10,8 @@ namespace Distribuidora
         public bool TxtProductos(List<Importado> importados, List<Fabricado> fabricados)
         {
             bool result = false;
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"\Tramites.txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + @"\Productos.txt"))
             {
-
-
-
                 if ((importados == null || importados.Count() == 0) && (fabricados == null || fabricados.Count() == 0))
                 {
                     file.WriteLine("*");

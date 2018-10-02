@@ -116,6 +116,7 @@
     <Content Include="WebForms\ListadoFabricados.aspx" />
     <Content Include="WebForms\ListProdPorTipo.aspx" />
     <Content Include="WebForms\Styles.css" />
+    <Content Include="WebForms\TxtProd.aspx" />
     <Content Include="WebForms\WelcomePage.aspx" />
     <None Include="Service References\ServiceReference1\Service1.wsdl" />
     <None Include="Service References\ServiceReference1\Service1.xsd">
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="WebForms\Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\TxtProd.aspx.cs">
+      <DependentUpon>TxtProd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\TxtProd.aspx.designer.cs">
+      <DependentUpon>TxtProd.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\WelcomePage.aspx.cs">
       <DependentUpon>WelcomePage.aspx</DependentUpon>

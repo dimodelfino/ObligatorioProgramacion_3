@@ -24,3 +24,17 @@ li a:hover{
     color: black;
 }
 
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.divGrdVw {
+  flex: 1 1 0;
+}
+
+.divInfo{
+   flex: 100%;
+   order: 3;
+}

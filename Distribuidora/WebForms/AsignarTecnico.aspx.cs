@@ -12,13 +12,13 @@ namespace Distribuidora.WebForms
         static int idProd = -1;
         static int idFab = -1;
         static int idEmp = -1;
+        static int tiempoRestante = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Funcionario"] == null)
             {
                 Response.Redirect("Login.aspx");
             }
-
             Fabricado fab = new Fabricado();
             grdVwProductosFab.DataSource = fab.TraerTodo();
             grdVwProductosFab.DataBind();
@@ -39,7 +39,7 @@ namespace Distribuidora.WebForms
         protected void grdVwTecnicos_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = grdVwTecnicos.SelectedRow.RowIndex;
-            idEmp = Convert.ToInt32(grdVwTecnicos.DataKeys[grdVwProductosFab.SelectedRow.RowIndex].Values[0]);
+            idEmp = Convert.ToInt32(grdVwTecnicos.DataKeys[selectedIndex].Values[0]);
             lblTecnicoSeleccionado.Text = "El tecnico con el nombre " + grdVwTecnicos.Rows[selectedIndex].Cells[2].Text + ", email " + grdVwTecnicos.Rows[selectedIndex].Cells[3].Text + " ha sido seleccionado.";
         }
 
@@ -49,30 +49,36 @@ namespace Distribuidora.WebForms
             {
                 if (idProd != -1 && idFab != -1 && idEmp != -1)
                 {
-                    Tecnico tec = new Tecnico()
+                    if (tiempoRestante != -1 && tiempoRestante - Convert.ToInt32(txtTiempoRealizacion) >= 0)
                     {
-                        IdProducto = idProd,
-                        IdEmpleado = idEmp,
-                        IdFabricado = idFab
-                    };
-
-                    if (tec.Buscar() == null)
-                    {
-                        tec.DescTarea = txtDescTarea.Text;
-                        tec.TiempTarea = Convert.ToInt32(txtTiempoRealizacion.Text);                       
-
-                        if (tec.Crear())
+                        Tecnico tec = new Tecnico()
                         {
-                            lblMensajeAsigTecnico.Text = "El tecnico fue asignado correctamente.";
+                            IdProducto = idProd,
+                            IdEmpleado = idEmp,
+                            IdFabricado = idFab
+                        };
+
+                        if (tec.Buscar() == null)
+                        {
+                            tec.DescTarea = txtDescTarea.Text;
+                            tec.TiempTarea = Convert.ToInt32(txtTiempoRealizacion.Text);
+
+                            if (tec.Crear())
+                            {
+                                lblMensajeAsigTecnico.Text = "El tecnico fue asignado correctamente.";
+                            }
+                            else
+                            {
+                                lblMensajeAsigTecnico.Text = "No se pudo asignar el tecnico.";
+                            }
                         }
                         else
                         {
-                            lblMensajeAsigTecnico.Text = "No se pudo asignar el tecnico.";
+                            lblMensajeAsigTecnico.Text = "El tecnico seleccionado ya fue asignado a ese producto";
                         }
-                    }
-                    else
+                    }else
                     {
-                        lblMensajeAsigTecnico.Text = "El tecnico seleccionado ya fue asignado a ese producto";
+                        lblMensajeAsigTecnico.Text = "El tiempo de realizacion no puede ser mayor al tiempo restante de fabricación.";
                     }
                 }
                 else
@@ -84,6 +90,11 @@ namespace Distribuidora.WebForms
             {
                 lblMensajeAsigTecnico.Text = "Debe Ingresar una descripcion de tarea y un tiempo de realizacion.";
             }
+            idProd = -1;
+            idFab = -1;
+            idEmp = -1;
+            grdVwProductosFab.SelectedIndex = -1;
+            grdVwTecnicos.SelectedIndex = -1;
         }
     }
 }

@@ -183,7 +183,7 @@ namespace Distribuidora
             SqlTransaction tran = null;
             try
             {
-                string sql = "INSERT INTO FabricadoFuncionario VALUES( @idFabricado, @idProducto, @idFuncionario, @descTarea, @tiempoTarea)";
+                string sql = "INSERT INTO FabricadoFuncionario VALUES(@idFabricado, @idProducto, @idFuncionario, @descTarea, @tiempoTarea)";
                 List<SqlParameter> parametros = new List<SqlParameter>();
                 SqlParameter parIdFabricado = new SqlParameter("@idFabricado", this.idFabricado);
                 SqlParameter parIdProducto = new SqlParameter("@idProducto", this.idProducto);
@@ -198,6 +198,17 @@ namespace Distribuidora
                 con.Open();
                 tran = con.BeginTransaction();
                 int afectadas = EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
+
+                sql = "UPDATE Fabricado SET tiempoRestante = tiempoRestante - @tiempoTarea WHERE IdFabricado = @idFabricado AND IdProducto = @idProducto";
+                List<SqlParameter> parametrosFab = new List<SqlParameter>();
+                SqlParameter parTiempoTarea = new SqlParameter("@TiempoTarea", this.TiempTarea);
+                SqlParameter parIdFab = new SqlParameter("@idFabricado", this.idFabricado);
+                SqlParameter parIdPro = new SqlParameter("@idProducto", this.idProducto);
+                parametrosFab.Add(parTiempoTarea);
+                parametrosFab.Add(parIdFab);
+                parametrosFab.Add(parIdPro);
+                EjecutarNoConsulta(con, sql, parametrosFab, CommandType.Text, tran);
+
                 tran.Commit();
                 if (afectadas > 0)
                 {

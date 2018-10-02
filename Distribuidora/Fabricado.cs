@@ -14,6 +14,7 @@ namespace Distribuidora
         private int usuarioAlta;
         private int idFabricado;
         private List<Tecnico> tecnicos = new List<Tecnico>();
+        private int tiempoRestante;
 
         #region Properties
         public int TiempoFab
@@ -65,6 +66,19 @@ namespace Distribuidora
             set
             {
                 tecnicos = value;
+            }
+        }
+
+        public int TiempoRestante
+        {
+            get
+            {
+                return tiempoRestante;
+            }
+
+            set
+            {
+                tiempoRestante = value;
             }
         }
 
@@ -126,6 +140,7 @@ namespace Distribuidora
                     fabricado.Desc = reader["Descripcion"].ToString();
                     fabricado.Costo = Convert.ToInt32(reader["Costo"]);
                     fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
+                    fabricado.TiempoRestante = Convert.ToInt32(reader["tiempoRestante"]);
                 }
 
                 sql = "SELECT * FROM FabricadoFuncionario WHERE IdProducto=@idProducto";
@@ -186,6 +201,7 @@ namespace Distribuidora
                     fabricado.Desc = reader["Descripcion"].ToString();
                     fabricado.Costo = Convert.ToInt32(reader["Costo"]);
                     fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
+                    fabricado.TiempoRestante = Convert.ToInt32(reader["tiempoRestante"]);
                 }
                 sql = "SELECT * FROM FabricadoFuncionario WHERE IdProducto=@idProducto";
                 reader.Close();
@@ -246,7 +262,7 @@ namespace Distribuidora
                 tran = con.BeginTransaction();
                 this.Id = Convert.ToInt32(EjecutarEscalar(con, sql, parametros, CommandType.Text, tran));
 
-                sql = "INSERT INTO Fabricado VALUES (@IdProducto, @TiempoFab, @UsuarioAlta)";
+                sql = "INSERT INTO Fabricado VALUES (@IdProducto, @TiempoFab, @UsuarioAlta, @TiempoFab)";
                 List<SqlParameter> parametrosFabricado = new List<SqlParameter>();
                 SqlParameter parFidProd = new SqlParameter("@IdProducto", this.Id);
                 SqlParameter parFtiempoFab = new SqlParameter("@TiempoFab", this.TiempoFab);
@@ -302,16 +318,18 @@ namespace Distribuidora
                 con.Open();
                 tran = con.BeginTransaction();
                 EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
-
-                sql = "UPDATE Fabricado SET @IdProducto=IdProducto , @TiempoFab=TiempoFab , @UsuarioAlta=UsuarioAlta)";
+                
+                sql = "UPDATE Fabricado SET @IdProducto=IdProducto , @TiempoFab=TiempoFab , @UsuarioAlta=UsuarioAlta, @TiempoRestante=tiempoRestante)";
                 List<SqlParameter> parametrosFabricado = new List<SqlParameter>();
                 SqlParameter parFidProd = new SqlParameter("@IdProducto", this.Id);
                 SqlParameter parFtiempoFab = new SqlParameter("@descripcion", this.TiempoFab);
                 SqlParameter parFusuAlta = new SqlParameter("@costo", this.UsuarioAlta);
+                SqlParameter parTiempoRest = new SqlParameter("@TiempoRestante", this.TiempoRestante);
 
                 parametrosFabricado.Add(parFidProd);
                 parametrosFabricado.Add(parFtiempoFab);
                 parametrosFabricado.Add(parFusuAlta);
+                parametrosFabricado.Add(parTiempoRest);
 
                 EjecutarNoConsulta(con, sql, parametrosFabricado, CommandType.Text, tran);
 
@@ -361,8 +379,9 @@ namespace Distribuidora
                             Costo = Convert.ToInt32(reader["Costo"]),
                             // TO DO VER COMO CONVERIT MONEY DE SQL EN COSTO Y PRECIO SUGERIDO DE PRODUCTO
                             PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]),
-                            Descontinuado = Convert.ToBoolean(reader["Descontinuado"])
-                        };
+                            Descontinuado = Convert.ToBoolean(reader["Descontinuado"]),
+                            TiempoRestante = Convert.ToInt32(reader["tiempoRestante"])
+                    };
                         fabricados.Add(fab);
                     }
                 }
