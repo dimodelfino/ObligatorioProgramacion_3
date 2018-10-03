@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Distribuidora.ServiceReferenceDistribuidoraWCF;
 
 namespace Distribuidora.WebForms
 {
@@ -13,11 +14,13 @@ namespace Distribuidora.WebForms
         {
             divGrdVwFabricados.Visible = false;
             divGrdVwImportados.Visible = false;
-            
-            grdVwFabricados.DataSource = Fachada.TraerTodoProdFabricado();
+
+            DistribuidoraWCFClient cli = new DistribuidoraWCFClient();
+
+            grdVwFabricados.DataSource = cli.mostrarTodosFabricados();
             grdVwFabricados.DataBind();
             
-            GrdVwImportados.DataSource = Fachada.TraerTodoProdImportado();
+            GrdVwImportados.DataSource = cli.mostrarTodosImportado();
             GrdVwImportados.DataBind();
 
         }

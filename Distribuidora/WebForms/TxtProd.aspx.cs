@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Distribuidora.ServiceReferenceDistribuidoraWCF;
 
 namespace Distribuidora.WebForms
 {
@@ -17,7 +18,8 @@ namespace Distribuidora.WebForms
             }
             
             lblMensajeReporteTxt.Text = "No se pudo generar el reporte correctamente";
-            if (Fachada.TxtReport()) lblMensajeReporteTxt.Text = "El reporte fue generado con exito!";
+            DistribuidoraWCFClient cli = new DistribuidoraWCFClient();            
+            if (cli.GenerarReporteTxtProductos()) lblMensajeReporteTxt.Text = "El reporte fue generado con exito!";
         }
     }
 }

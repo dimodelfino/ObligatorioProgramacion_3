@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ac5ba044-ad00-4021-b64f-3a749c5bda40" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:63697/DistribuidoraWCF.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DistribuidoraWCF.disco" MetadataType="Disco" ID="cae76699-a76a-4c72-8373-c9a8b7107c49" SourceId="1" SourceUrl="http://localhost:63697/DistribuidoraWCF.svc?disco" />
+    <MetadataFile FileName="DistribuidoraWCF2.xsd" MetadataType="Schema" ID="ca03307d-4072-4174-a661-37c589b560b0" SourceId="1" SourceUrl="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd0" />
+    <MetadataFile FileName="DistribuidoraWCF.xsd" MetadataType="Schema" ID="76a0c8cd-8cb5-422c-9875-fe791627c1f9" SourceId="1" SourceUrl="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd1" />
+    <MetadataFile FileName="DistribuidoraWCF.wsdl" MetadataType="Wsdl" ID="6d54be43-0ad5-43b4-8311-f967c2294519" SourceId="1" SourceUrl="http://localhost:63697/DistribuidoraWCF.svc?wsdl" />
+    <MetadataFile FileName="DistribuidoraWCF3.xsd" MetadataType="Schema" ID="16b183eb-63cb-4a5f-99b6-16b4b8308c30" SourceId="1" SourceUrl="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd3" />
+    <MetadataFile FileName="DistribuidoraWCF1.xsd" MetadataType="Schema" ID="452225d1-7c47-403d-b905-ba7e3422c299" SourceId="1" SourceUrl="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

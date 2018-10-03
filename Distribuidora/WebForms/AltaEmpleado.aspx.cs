@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using Distribuidora.ServiceReference1;
+using Distribuidora.ServiceReferenceDistribuidoraWCF;
 
 namespace Distribuidora
 {
@@ -25,7 +25,8 @@ namespace Distribuidora
             {                
                 if (Fachada.BuscarEmpleado(txtMailEmpleado.Text).Email == null)
                 {
-                    if (Fachada.CrearEmpleado(txtNombreEmpleado.Text, txtMailEmpleado.Text, txtContreasena.Text, chkBxTecnico.Checked))
+                    DistribuidoraWCFClient cli = new DistribuidoraWCFClient();
+                    if (cli.altaEmpleado(txtNombreEmpleado.Text, txtContreasena.Text, txtMailEmpleado.Text, chkBxTecnico.Checked))
                     {
                         lblMensajeEmpleado.Text = "El empleado se pudo dar de alta correctamente.";
                     }

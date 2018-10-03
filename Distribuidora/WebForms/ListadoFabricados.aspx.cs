@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Distribuidora.ServiceReferenceDistribuidoraWCF;
 
 namespace Distribuidora.WebForms
 {
@@ -15,9 +16,13 @@ namespace Distribuidora.WebForms
             {
                 Response.Redirect("Login.aspx");
             }
-            
-            grdVwListaFabricados.DataSource = Fachada.TraerTodoProdFabricado();
+
+
+            DistribuidoraWCFClient cli = new DistribuidoraWCFClient();           
+            cli.Open();
+            grdVwListaFabricados.DataSource = cli.mostrarTodosFabricados();
             grdVwListaFabricados.DataBind();
+            cli.Close();
         }
     }
 }

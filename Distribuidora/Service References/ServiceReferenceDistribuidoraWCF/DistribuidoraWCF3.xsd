@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServicioDistribuidora" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServicioDistribuidora" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfDtoFabricado">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DtoFabricado" nillable="true" type="tns:DtoFabricado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDtoFabricado" nillable="true" type="tns:ArrayOfDtoFabricado" />
+  <xs:complexType name="DtoFabricado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="costo" type="xs:double" />
+      <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="descontinuado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idFabricado" type="xs:int" />
+      <xs:element minOccurs="0" name="precioSugerido" type="xs:double" />
+      <xs:element minOccurs="0" name="tiempoFab" type="xs:int" />
+      <xs:element minOccurs="0" name="tiempoRestante" type="xs:int" />
+      <xs:element minOccurs="0" name="usuarioAlta" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DtoFabricado" nillable="true" type="tns:DtoFabricado" />
+  <xs:complexType name="ArrayOfDtoImportado">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DtoImportado" nillable="true" type="tns:DtoImportado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDtoImportado" nillable="true" type="tns:ArrayOfDtoImportado" />
+  <xs:complexType name="DtoImportado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cantImportacion" type="xs:int" />
+      <xs:element minOccurs="0" name="costo" type="xs:double" />
+      <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="descontinuado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="idImportado" type="xs:int" />
+      <xs:element minOccurs="0" name="origen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="precioSugerido" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DtoImportado" nillable="true" type="tns:DtoImportado" />
+</xs:schema>

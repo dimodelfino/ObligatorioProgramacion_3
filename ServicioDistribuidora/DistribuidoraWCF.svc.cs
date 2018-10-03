@@ -10,23 +10,9 @@ namespace ServicioDistribuidora
 {
     public class DistribuidoraWCF : IDistribuidoraWCF
     {
-        public bool agregarProductoFabricado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, int tiempoFab, int usuarioAlta)
+        public bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado)
         {
-            bool ret = false;
-            Fabricado prodF = new Fabricado()
-            {
-                Nombre = nombre,
-                Desc = descripcion,
-                Costo = costo,
-                PrecioSugerido = precioSugerido,
-                Descontinuado = descontinuado,
-                TiempoFab = tiempoFab,
-                UsuarioAlta = usuarioAlta,
-            };
-            if (prodF.Crear()) {
-                ret = true;
-            }
-            return ret;
+           return Fachada.CrearProductoFabricado(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado);            
         }
 
         public bool agregarProductoImportado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, string origen, int cantImportacion)
@@ -50,24 +36,17 @@ namespace ServicioDistribuidora
         }
 
         public bool altaEmpleado(string nombre, string contrasena, string email, bool tipo)
-        {
-            string tipoEmp = "E";
-            if (tipo) tipoEmp = "T";
-            Empleado emp = new Empleado()
-            {
-                Nombre = nombre,
-                Contrasena = contrasena,
-                Email = email,
-                Tipo = tipoEmp,
-            };
-            return emp.Crear();
+        {            
+            return Fachada.CrearEmpleado(nombre, email, contrasena, tipo);
         }
 
         public bool asignarTecnico(List<Tecnico> tecnicos)
         {
-            bool ret = false; 
-            if (tecnicos != null) {
-                foreach (Tecnico tec in tecnicos) {
+            bool ret = false;
+            if (tecnicos != null)
+            {
+                foreach (Tecnico tec in tecnicos)
+                {
                     if (tec != null)
                     {
                         tec.Crear();
@@ -78,20 +57,59 @@ namespace ServicioDistribuidora
             return ret;
         }
 
-        public List<Fabricado> mostrarTodosFabricados()
+        public IEnumerable<DtoFabricado> mostrarTodosFabricados()
         {
-            Fabricado fab = new Fabricado ();
-            List<Fabricado> fabricados = new List<Fabricado>();
-            fabricados = fab.TraerTodo();
-            return fabricados;
+            List<Fabricado> fabricados = Fachada.TraerTodoProdFabricado();
+            List<DtoFabricado> retorno = new List<DtoFabricado>();
+            foreach (Fabricado fab in fabricados)
+            {
+                retorno.Add(
+                    new DtoFabricado
+                    {
+                        Id = fab.Id,
+                        Nombre = fab.Nombre,
+                        desc = fab.Desc,
+                        costo = fab.Costo,
+                        precioSugerido = fab.PrecioSugerido,
+                        descontinuado = fab.Descontinuado,
+                        tiempoFab = fab.TiempoFab,
+                        usuarioAlta = fab.UsuarioAlta,
+                        idFabricado = fab.IdFabricado,
+                        tiempoRestante = fab.TiempoRestante
+                    });
+            }
+
+            return retorno;
         }
 
-        public List<Importado> mostrarTodosImportado()
+        public bool GenerarReporteTxtProductos()
         {
-            Importado imp = new Importado();
-            List<Importado> importados = new List<Importado>();
-            importados = imp.TraerTodo();
-            return importados;
+            return Fachada.TxtReport();
         }
+
+        public IEnumerable<DtoImportado> mostrarTodosImportado()
+        {
+
+            List<Importado> importados = Fachada.TraerTodoProdImportado();
+            List<DtoImportado> retorno = new List<DtoImportado>();
+            foreach (Importado imp in importados)
+            {
+                retorno.Add(
+                    new DtoImportado
+                    {
+                        Id = imp.Id,
+                        Nombre = imp.Nombre,
+                        desc = imp.Desc,
+                        costo = imp.Costo,
+                        precioSugerido = imp.PrecioSugerido,
+                        descontinuado = imp.Descontinuado,
+                        idImportado = imp.IdImportado,
+                        origen = imp.Origen,
+                        cantImportacion = imp.CantImportacion                        
+                    });
+            }
+
+            return retorno;           
+        }       
     }
 }

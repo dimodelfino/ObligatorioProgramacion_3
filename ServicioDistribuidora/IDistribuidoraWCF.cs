@@ -12,7 +12,7 @@ namespace ServicioDistribuidora
     public interface IDistribuidoraWCF
     {
         [OperationContract]
-        bool agregarProductoFabricado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, int tiempoFab, int usuarioAlta);
+        bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado);
 
         [OperationContract]
         bool agregarProductoImportado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, string origen, int cantImportacion);
@@ -21,12 +21,17 @@ namespace ServicioDistribuidora
         bool asignarTecnico(List<Tecnico>tecnicos);
 
         [OperationContract]
-        List<Fabricado> mostrarTodosFabricados();
+        IEnumerable<DtoFabricado> mostrarTodosFabricados();
 
         [OperationContract]
         bool altaEmpleado(string nombre, string contrasena, string email, bool tipo);
 
         [OperationContract]
-        List<Importado> mostrarTodosImportado();
-    }    
+        IEnumerable<DtoImportado> mostrarTodosImportado();
+
+        [OperationContract] 
+        bool GenerarReporteTxtProductos();
+    }   
+    
+     
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Distribuidora.ServiceReferenceDistribuidoraWCF;
 
 namespace Distribuidora.WebForms
 {
@@ -47,7 +48,8 @@ namespace Distribuidora.WebForms
                             && txtCostoProd.Text.Trim() != "" && txtPrecioSugerido.Text.Trim() != ""
                             && txtTiempoFab.Text.Trim() != "" && emp.IdEmpleado > 0)
                         {
-                            if (Fachada.CrearProductoFabricado(txtNombreProducto.Text, txtDescProd.Text, double.Parse(txtCostoProd.Text), double.Parse(txtPrecioSugerido.Text), Convert.ToInt32(txtTiempoFab.Text), emp.IdEmpleado))
+                            DistribuidoraWCFClient cli = new DistribuidoraWCFClient();                            
+                            if (cli.agregarProductoFabricado(txtNombreProducto.Text, txtDescProd.Text, double.Parse(txtCostoProd.Text), double.Parse(txtPrecioSugerido.Text), Convert.ToInt32(txtTiempoFab.Text), emp.IdEmpleado))
                             {
                                 lblMensajeProducto.Text = "El producto fabricado fue dado de alta correctamente.";
                             }

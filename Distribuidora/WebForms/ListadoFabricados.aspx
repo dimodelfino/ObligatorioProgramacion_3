@@ -7,10 +7,10 @@
     <br />
     <br />
     <div id="divGrdVwListaFabricados" runat="server">
-        <asp:gridview id="grdVwListaFabricados" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:gridview id="grdVwListaFabricados" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" >
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="desc" HeaderText="Descripción" />
                 <asp:BoundField DataField="costo" HeaderText="Costo" />
                 <asp:BoundField DataField="precioSugerido" HeaderText="Precio Sugerido" />

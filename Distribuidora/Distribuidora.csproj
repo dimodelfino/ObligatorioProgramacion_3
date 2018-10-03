@@ -96,13 +96,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service References\ServiceReference1\Distribuidora.ServiceReference1.CompositeType.datasource">
+    <Content Include="Service References\ServiceReferenceDistribuidoraWCF\Distribuidora.ServiceReferenceDistribuidoraWCF.DtoFabricado.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\ServiceReference1\Service1.disco" />
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
+    <Content Include="Service References\ServiceReferenceDistribuidoraWCF\Distribuidora.ServiceReferenceDistribuidoraWCF.DtoImportado.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\DistribuidoraWCF.disco" />
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\configuration.svcinfo" />
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\DistribuidoraWCF3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -118,14 +124,14 @@
     <Content Include="WebForms\Styles.css" />
     <Content Include="WebForms\TxtProd.aspx" />
     <Content Include="WebForms\WelcomePage.aspx" />
-    <None Include="Service References\ServiceReference1\Service1.wsdl" />
-    <None Include="Service References\ServiceReference1\Service1.xsd">
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\DistribuidoraWCF.wsdl" />
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\DistribuidoraWCF.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service11.xsd">
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\DistribuidoraWCF1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\Service12.xsd">
+    <None Include="Service References\ServiceReferenceDistribuidoraWCF\DistribuidoraWCF2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
@@ -144,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachada.cs" />
-    <Compile Include="Service References\ServiceReference1\Reference.cs">
+    <Compile Include="Service References\ServiceReferenceDistribuidoraWCF\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -226,7 +232,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\ServiceReferenceDistribuidoraWCF\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

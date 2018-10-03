@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DistribuidoraWCF" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Distribuidora" />
+      <xsd:import schemaLocation="http://localhost:63697/DistribuidoraWCF.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ServicioDistribuidora" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDistribuidoraWCF_agregarProductoFabricado_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProductoFabricado" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_agregarProductoFabricado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProductoFabricadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_agregarProductoImportado_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProductoImportado" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_agregarProductoImportado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarProductoImportadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_asignarTecnico_InputMessage">
+    <wsdl:part name="parameters" element="tns:asignarTecnico" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_asignarTecnico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:asignarTecnicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_mostrarTodosFabricados_InputMessage">
+    <wsdl:part name="parameters" element="tns:mostrarTodosFabricados" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_mostrarTodosFabricados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:mostrarTodosFabricadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_altaEmpleado_InputMessage">
+    <wsdl:part name="parameters" element="tns:altaEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_altaEmpleado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:altaEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_mostrarTodosImportado_InputMessage">
+    <wsdl:part name="parameters" element="tns:mostrarTodosImportado" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_mostrarTodosImportado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:mostrarTodosImportadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_GenerarReporteTxtProductos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerarReporteTxtProductos" />
+  </wsdl:message>
+  <wsdl:message name="IDistribuidoraWCF_GenerarReporteTxtProductos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerarReporteTxtProductosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDistribuidoraWCF">
+    <wsdl:operation name="agregarProductoFabricado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricado" message="tns:IDistribuidoraWCF_agregarProductoFabricado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricadoResponse" message="tns:IDistribuidoraWCF_agregarProductoFabricado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarProductoImportado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoImportado" message="tns:IDistribuidoraWCF_agregarProductoImportado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoImportadoResponse" message="tns:IDistribuidoraWCF_agregarProductoImportado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="asignarTecnico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/asignarTecnico" message="tns:IDistribuidoraWCF_asignarTecnico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/asignarTecnicoResponse" message="tns:IDistribuidoraWCF_asignarTecnico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="mostrarTodosFabricados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/mostrarTodosFabricados" message="tns:IDistribuidoraWCF_mostrarTodosFabricados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/mostrarTodosFabricadosResponse" message="tns:IDistribuidoraWCF_mostrarTodosFabricados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="altaEmpleado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/altaEmpleado" message="tns:IDistribuidoraWCF_altaEmpleado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/altaEmpleadoResponse" message="tns:IDistribuidoraWCF_altaEmpleado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="mostrarTodosImportado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/mostrarTodosImportado" message="tns:IDistribuidoraWCF_mostrarTodosImportado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/mostrarTodosImportadoResponse" message="tns:IDistribuidoraWCF_mostrarTodosImportado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerarReporteTxtProductos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDistribuidoraWCF/GenerarReporteTxtProductos" message="tns:IDistribuidoraWCF_GenerarReporteTxtProductos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDistribuidoraWCF/GenerarReporteTxtProductosResponse" message="tns:IDistribuidoraWCF_GenerarReporteTxtProductos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDistribuidoraWCF" type="tns:IDistribuidoraWCF">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="agregarProductoFabricado">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarProductoImportado">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/agregarProductoImportado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="asignarTecnico">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/asignarTecnico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mostrarTodosFabricados">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/mostrarTodosFabricados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altaEmpleado">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/altaEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mostrarTodosImportado">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/mostrarTodosImportado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerarReporteTxtProductos">
+      <soap:operation soapAction="http://tempuri.org/IDistribuidoraWCF/GenerarReporteTxtProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DistribuidoraWCF">
+    <wsdl:port name="BasicHttpBinding_IDistribuidoraWCF" binding="tns:BasicHttpBinding_IDistribuidoraWCF">
+      <soap:address location="http://localhost:63697/DistribuidoraWCF.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

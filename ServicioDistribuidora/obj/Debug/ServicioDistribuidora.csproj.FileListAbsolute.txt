@@ -1,4 +1,3 @@
-C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\obj\Debug\ServicioDistribuidora.csprojResolveAssemblyReference.cache
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\bin\ApplicationInsights.config
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\bin\roslyn\csc.exe
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -29,5 +28,6 @@ C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\Obligatorio
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\bin\Microsoft.AI.Web.xml
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\bin\Microsoft.ApplicationInsights.xml
+C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\obj\Debug\ServicioDistribuidora.csprojResolveAssemblyReference.cache
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\obj\Debug\ServicioDistribuidora.dll
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\ServicioDistribuidora\obj\Debug\ServicioDistribuidora.pdb
