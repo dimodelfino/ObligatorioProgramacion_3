@@ -17,7 +17,7 @@ namespace Distribuidora.WebForms
             }
 
             divFabricado.Visible = false;
-            divImportado.Visible = false;            
+            divImportado.Visible = false;
         }
 
         protected void rbtnListTipoProd_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,7 +26,8 @@ namespace Distribuidora.WebForms
             {
                 divFabricado.Visible = true;
                 divImportado.Visible = false;
-            }else
+            }
+            else
             {
                 divFabricado.Visible = false;
                 divImportado.Visible = true;
@@ -35,63 +36,54 @@ namespace Distribuidora.WebForms
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            if (IsValid) {
-                if (this.rbtnListTipoProd.SelectedValue == "Fabricado")
+            if (IsValid)
+            {
+                if (!Fachada.ExisteProducto(txtNombreProducto.Text.Trim()))
                 {
-                    Empleado emp = (Empleado)Session["Funcionario"];
-                    if (txtNombreProducto.Text.Trim() != "" && txtDescProd.Text.Trim() != "" 
-                        && txtCostoProd.Text.Trim() != "" && txtPrecioSugerido.Text.Trim() != ""
-                        && txtTiempoFab.Text.Trim() != "" && emp.IdEmpleado > 0) {                        
-                        Fabricado fab = new Fabricado() {
-                            Nombre = txtNombreProducto.Text,
-                            Desc = txtDescProd.Text,
-                            Costo = double.Parse(txtCostoProd.Text),
-                            PrecioSugerido = double.Parse(txtPrecioSugerido.Text),
-                            Descontinuado = false,
-                            TiempoFab = Convert.ToInt32(txtTiempoFab.Text),
-                            //TODO: CONFIRMAR QUE QUEDE INGRESADO EL IdEmpleado EN LA VARIABLE UsuarioAlta
-                            UsuarioAlta = emp.IdEmpleado
-                        };
-
-                        if (fab.Crear())
-                        {
-                            lblMensajeProducto.Text = "El producto fabricado fue dado de alta correctamente.";
-                        } else
-                        {
-                            lblMensajeProducto.Text = "No se pudo dar de alta el producto fabricado";
-                        }
-                    }
-                }
-                else if(this.rbtnListTipoProd.SelectedValue == "Importado")
-                {
-                    if (txtNombreProducto.Text.Trim() != "" && txtDescProd.Text.Trim() != ""
-                        && txtCostoProd.Text.Trim() != "" && txtPrecioSugerido.Text.Trim() != ""
-                        && txtOrigen.Text.Trim() != "" && txtCantImp.Text.Trim() !="")
+                    if (this.rbtnListTipoProd.SelectedValue == "Fabricado")
                     {
-                        Importado imp = new Importado()
+                        Empleado emp = (Empleado)Session["Funcionario"];
+                        if (txtNombreProducto.Text.Trim() != "" && txtDescProd.Text.Trim() != ""
+                            && txtCostoProd.Text.Trim() != "" && txtPrecioSugerido.Text.Trim() != ""
+                            && txtTiempoFab.Text.Trim() != "" && emp.IdEmpleado > 0)
                         {
-                            Nombre = txtNombreProducto.Text,
-                            Desc = txtDescProd.Text,
-                            Costo = double.Parse(txtCostoProd.Text),
-                            PrecioSugerido = double.Parse(txtPrecioSugerido.Text),
-                            Descontinuado = false,
-                            Origen = txtOrigen.Text,
-                            CantImportacion = Convert.ToInt32(txtCantImp.Text)
-                        };
-                        if (imp.Crear())
-                        {
-                            lblMensajeProducto.Text = "El producto importado fue dado de alta correctamente.";
-                        }
-                        else
-                        {
-                            lblMensajeProducto.Text = "No se pudo dar de alta el producto importado.";
+                            if (Fachada.CrearProductoFabricado(txtNombreProducto.Text, txtDescProd.Text, double.Parse(txtCostoProd.Text), double.Parse(txtPrecioSugerido.Text), Convert.ToInt32(txtTiempoFab.Text), emp.IdEmpleado))
+                            {
+                                lblMensajeProducto.Text = "El producto fabricado fue dado de alta correctamente.";
+                            }
+                            else
+                            {
+                                lblMensajeProducto.Text = "No se pudo dar de alta el producto fabricado";
+                            }
                         }
                     }
+                    else if (this.rbtnListTipoProd.SelectedValue == "Importado")
+                    {
+                        if (txtNombreProducto.Text.Trim() != "" && txtDescProd.Text.Trim() != ""
+                            && txtCostoProd.Text.Trim() != "" && txtPrecioSugerido.Text.Trim() != ""
+                            && txtOrigen.Text.Trim() != "" && txtCantImp.Text.Trim() != "")
+                        {
+                            if (Fachada.CrearProductoImportado(txtNombreProducto.Text, txtDescProd.Text, double.Parse(txtCostoProd.Text), double.Parse(txtPrecioSugerido.Text), txtOrigen.Text, Convert.ToInt32(txtCantImp.Text)))
+                            {
+                                lblMensajeProducto.Text = "El producto importado fue dado de alta correctamente.";
+                            }
+                            else
+                            {
+                                lblMensajeProducto.Text = "No se pudo dar de alta el producto importado.";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblMensajeProducto.Text = "Debe seleccionar un tipo de producto.";
+                    }
+
                 }else
                 {
-                    lblMensajeProducto.Text = "Debe seleccionar un tipo de producto.";
+                    lblMensajeProducto.Text = "Ya existe producto con ese nombre.";
                 }
             }
+            rbtnListTipoProd.ClearSelection();
         }
     }
 }

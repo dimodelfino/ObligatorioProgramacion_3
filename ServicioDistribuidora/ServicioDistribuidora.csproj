@@ -98,6 +98,8 @@
     <Compile Include="DistribuidoraWCF.svc.cs">
       <DependentUpon>DistribuidoraWCF.svc</DependentUpon>
     </Compile>
+    <Compile Include="DtoFabricado.cs" />
+    <Compile Include="DtoImportado.cs" />
     <Compile Include="IDistribuidoraWCF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

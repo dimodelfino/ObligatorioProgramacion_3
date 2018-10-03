@@ -86,7 +86,7 @@ namespace Distribuidora
 
         #region Metodos
         public override bool Borrar()
-        {  
+        {
             bool ret = false;
             SqlConnection con = ObtenerConexion();
             SqlTransaction tran = null;
@@ -120,7 +120,7 @@ namespace Distribuidora
 
         public Fabricado Buscar()
         {
-            Fabricado fabricado = new Fabricado();
+            Fabricado fabricado = null;
             SqlConnection con = ObtenerConexion();
             string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE IdFabricado=@idFabricado";
             SqlParameter par = new SqlParameter("@idFabricado", this.IdFabricado);
@@ -132,20 +132,23 @@ namespace Distribuidora
 
                 if (reader.Read())
                 {
-                    fabricado.tiempoFab = Convert.ToInt32(reader["TiempoFab"]);
-                    fabricado.usuarioAlta = Convert.ToInt32(reader["usuarioAlta"]);
-                    fabricado.Id = this.Id;
-                    fabricado.idFabricado = Convert.ToInt32(reader["IdFabricado"]);
-                    fabricado.Nombre = reader["Nombre"].ToString(); 
-                    fabricado.Desc = reader["Descripcion"].ToString();
-                    fabricado.Costo = Convert.ToInt32(reader["Costo"]);
-                    fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
-                    fabricado.TiempoRestante = Convert.ToInt32(reader["tiempoRestante"]);
+                    fabricado = new Fabricado()
+                    {
+                        TiempoFab = Convert.ToInt32(reader["TiempoFab"]),
+                        UsuarioAlta = Convert.ToInt32(reader["usuarioAlta"]),
+                        Id = this.Id,
+                        IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
+                        Nombre = reader["Nombre"].ToString(),
+                        Desc = reader["Descripcion"].ToString(),
+                        Costo = Convert.ToInt32(reader["Costo"]),
+                        PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]),
+                        TiempoRestante = Convert.ToInt32(reader["tiempoRestante"])
+                    };
                 }
 
                 sql = "SELECT * FROM FabricadoFuncionario WHERE IdProducto=@idProducto";
                 reader.Close();
-                reader=EjecutarConsulta(con, sql, new List<SqlParameter>() { new SqlParameter ("@idProducto", this.Id)}, CommandType.Text);
+                reader = EjecutarConsulta(con, sql, new List<SqlParameter>() { new SqlParameter("@idProducto", this.Id) }, CommandType.Text);
 
                 while (reader.Read())
                 {
@@ -158,7 +161,7 @@ namespace Distribuidora
                         TiempTarea = Convert.ToInt32(reader["TiempoTarea"])
                     };
                     this.tecnicos.Add(tec);
-                } 
+                }
             }
             catch
             {
@@ -181,7 +184,7 @@ namespace Distribuidora
 
         public Fabricado BuscarPorNombre()
         {
-            Fabricado fabricado = new Fabricado();
+            Fabricado fabricado = null;
             SqlConnection con = ObtenerConexion();
             string sql = "SELECT * FROM Fabricado INNER JOIN Producto ON Fabricado.IdProducto = Producto.IdProducto WHERE Nombre=@nombre";
             SqlParameter par = new SqlParameter("@nombre", this.Nombre);
@@ -193,15 +196,18 @@ namespace Distribuidora
 
                 if (reader.Read())
                 {
-                    fabricado.tiempoFab = Convert.ToInt32(reader["TiempoFab"]);
-                    fabricado.usuarioAlta = Convert.ToInt32(reader["usuarioAlta"]);
-                    fabricado.Id = Convert.ToInt32(reader["IdProducto"]);
-                    fabricado.idFabricado = Convert.ToInt32(reader["IdFabricado"]);
-                    fabricado.Nombre = this.Nombre;
-                    fabricado.Desc = reader["Descripcion"].ToString();
-                    fabricado.Costo = Convert.ToInt32(reader["Costo"]);
-                    fabricado.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
-                    fabricado.TiempoRestante = Convert.ToInt32(reader["tiempoRestante"]);
+                    fabricado = new Fabricado()
+                    {
+                        TiempoFab = Convert.ToInt32(reader["TiempoFab"]),
+                        UsuarioAlta = Convert.ToInt32(reader["usuarioAlta"]),
+                        Id = Convert.ToInt32(reader["IdProducto"]),
+                        IdFabricado = Convert.ToInt32(reader["IdFabricado"]),
+                        Nombre = this.Nombre,
+                        Desc = reader["Descripcion"].ToString(),
+                        Costo = Convert.ToInt32(reader["Costo"]),
+                        PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]),
+                        TiempoRestante = Convert.ToInt32(reader["tiempoRestante"])
+                    };
                 }
                 sql = "SELECT * FROM FabricadoFuncionario WHERE IdProducto=@idProducto";
                 reader.Close();
@@ -271,7 +277,7 @@ namespace Distribuidora
                 parametrosFabricado.Add(parFidProd);
                 parametrosFabricado.Add(parFtiempoFab);
                 parametrosFabricado.Add(parFusuAlta);
- 
+
                 EjecutarNoConsulta(con, sql, parametrosFabricado, CommandType.Text, tran);
 
                 tran.Commit();
@@ -318,7 +324,7 @@ namespace Distribuidora
                 con.Open();
                 tran = con.BeginTransaction();
                 EjecutarNoConsulta(con, sql, parametros, CommandType.Text, tran);
-                
+
                 sql = "UPDATE Fabricado SET @IdProducto=IdProducto , @TiempoFab=TiempoFab , @UsuarioAlta=UsuarioAlta, @TiempoRestante=tiempoRestante)";
                 List<SqlParameter> parametrosFabricado = new List<SqlParameter>();
                 SqlParameter parFidProd = new SqlParameter("@IdProducto", this.Id);
@@ -381,7 +387,7 @@ namespace Distribuidora
                             PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]),
                             Descontinuado = Convert.ToBoolean(reader["Descontinuado"]),
                             TiempoRestante = Convert.ToInt32(reader["tiempoRestante"])
-                    };
+                        };
                         fabricados.Add(fab);
                     }
                 }

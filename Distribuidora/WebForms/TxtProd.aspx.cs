@@ -15,12 +15,9 @@ namespace Distribuidora.WebForms
             {
                 Response.Redirect("Login.aspx");
             }
-
-            Importado imp = new Importado();
-            Fabricado fab = new Fabricado();
-            TxtHandler report = new TxtHandler();
+            
             lblMensajeReporteTxt.Text = "No se pudo generar el reporte correctamente";
-            if (report.TxtProductos(imp.TraerTodo(), fab.TraerTodo())) lblMensajeReporteTxt.Text = "El reporte fue generado con exito!";
+            if (Fachada.TxtReport()) lblMensajeReporteTxt.Text = "El reporte fue generado con exito!";
         }
     }
 }

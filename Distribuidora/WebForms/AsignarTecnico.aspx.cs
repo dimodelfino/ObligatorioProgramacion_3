@@ -19,12 +19,11 @@ namespace Distribuidora.WebForms
             {
                 Response.Redirect("Login.aspx");
             }
-            Fabricado fab = new Fabricado();
-            grdVwProductosFab.DataSource = fab.TraerTodo();
+            
+            grdVwProductosFab.DataSource = Fachada.TraerTodoProdFabricado();
             grdVwProductosFab.DataBind();
-
-            Empleado emp = new Empleado();
-            grdVwTecnicos.DataSource = emp.TraerTodoTecnicos();
+            
+            grdVwTecnicos.DataSource = Fachada.TraerTodoTecnicos();
             grdVwTecnicos.DataBind();
         }
 
@@ -33,6 +32,7 @@ namespace Distribuidora.WebForms
             int selectedIndex = grdVwProductosFab.SelectedRow.RowIndex;
             idProd = Convert.ToInt32(grdVwProductosFab.DataKeys[selectedIndex].Values[0]);
             idFab = Convert.ToInt32(grdVwProductosFab.DataKeys[selectedIndex].Values[1]);
+            tiempoRestante = Convert.ToInt32(grdVwProductosFab.DataKeys[selectedIndex].Values[2]);
             lblProductoSeleccionado.Text = "El producto de nombre " + grdVwProductosFab.Rows[selectedIndex].Cells[3].Text + " ha sido seleccionado.";
         }
 
@@ -49,21 +49,12 @@ namespace Distribuidora.WebForms
             {
                 if (idProd != -1 && idFab != -1 && idEmp != -1)
                 {
-                    if (tiempoRestante != -1 && tiempoRestante - Convert.ToInt32(txtTiempoRealizacion) >= 0)
-                    {
-                        Tecnico tec = new Tecnico()
-                        {
-                            IdProducto = idProd,
-                            IdEmpleado = idEmp,
-                            IdFabricado = idFab
-                        };
-
-                        if (tec.Buscar() == null)
-                        {
-                            tec.DescTarea = txtDescTarea.Text;
-                            tec.TiempTarea = Convert.ToInt32(txtTiempoRealizacion.Text);
-
-                            if (tec.Crear())
+                    int tiempoRealiza = Convert.ToInt32(txtTiempoRealizacion.Text);
+                    if (tiempoRestante != -1 && tiempoRestante - tiempoRealiza >= 0)
+                    {                        
+                        if (Fachada.BuscarTecnico(idProd, idEmp, idFab) == null)
+                        {                            
+                            if (Fachada.CrearTecnico(idProd, idEmp, idFab, txtDescTarea.Text, Convert.ToInt32(txtTiempoRealizacion.Text)))
                             {
                                 lblMensajeAsigTecnico.Text = "El tecnico fue asignado correctamente.";
                             }

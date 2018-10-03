@@ -13,13 +13,11 @@ namespace Distribuidora.WebForms
         {
             divGrdVwFabricados.Visible = false;
             divGrdVwImportados.Visible = false;
-
-            Fabricado fab = new Fabricado();
-            grdVwFabricados.DataSource = fab.TraerTodo();
+            
+            grdVwFabricados.DataSource = Fachada.TraerTodoProdFabricado();
             grdVwFabricados.DataBind();
-
-            Importado imp = new Importado();
-            GrdVwImportados.DataSource = imp.TraerTodo();
+            
+            GrdVwImportados.DataSource = Fachada.TraerTodoProdImportado();
             GrdVwImportados.DataBind();
 
         }

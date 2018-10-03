@@ -136,7 +136,7 @@ namespace Distribuidora
 
         public Importado BuscarPorNombre()
         {
-            Importado importados = new Importado();
+            Importado importados = null;
             SqlConnection con = ObtenerConexion();
             string sql = "SELECT * FROM Importados INNER JOIN Producto ON Importados.IdProducto = Producto.IdProducto WHERE Nombre=@nombre";
             SqlParameter par = new SqlParameter("@nombre", this.Nombre);
@@ -148,14 +148,17 @@ namespace Distribuidora
 
                 if (reader.Read())
                 {
-                    importados.origen = reader["Origen"].ToString();
-                    importados.cantImportacion = Convert.ToInt32(reader["CantImportacion"]);
-                    importados.Id = Convert.ToInt32(reader["IdProducto"]);
-                    importados.idImportado = Convert.ToInt32(reader["IdImportados"]);
-                    importados.Nombre = this.Nombre;
-                    importados.Desc = reader["Descripcion"].ToString();
-                    importados.Costo = Convert.ToInt32(reader["Costo"]);
-                    importados.PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"]);
+                    importados = new Importado()
+                    {
+                        origen = reader["Origen"].ToString(),
+                        cantImportacion = Convert.ToInt32(reader["CantImportacion"]),
+                        Id = Convert.ToInt32(reader["IdProducto"]),
+                        idImportado = Convert.ToInt32(reader["IdImportados"]),
+                        Nombre = this.Nombre,
+                        Desc = reader["Descripcion"].ToString(),
+                        Costo = Convert.ToInt32(reader["Costo"]),
+                        PrecioSugerido = Convert.ToInt32(reader["PrecioSugerido"])
+                    };
                 }
             }
             catch
@@ -305,7 +308,7 @@ namespace Distribuidora
                     while (reader.Read())
                     {
                         Importado imp = new Importado()
-                        {                            
+                        {
                             Nombre = reader["Nombre"].ToString(),
                             Desc = reader["Descripcion"].ToString(),
                             Costo = Convert.ToInt32(reader["Costo"]),
@@ -313,7 +316,7 @@ namespace Distribuidora
                             IdImportado = Convert.ToInt32(reader["IdImportados"]),
                             Id = Convert.ToInt32(reader["IdProducto"]),
                             Origen = reader["Origen"].ToString(),
-                            CantImportacion = Convert.ToInt32(reader["CantImportacion"]),                            
+                            CantImportacion = Convert.ToInt32(reader["CantImportacion"]),
                         };
                         importados.Add(imp);
                     }

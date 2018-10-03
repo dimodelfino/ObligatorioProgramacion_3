@@ -22,19 +22,10 @@ namespace Distribuidora
         protected void btnAgregarEmpleado_Click(object sender, EventArgs e)
         {
             if (IsValid && txtContreasena.Text != "" && txtMailEmpleado.Text != "")
-            {
-                Empleado emp = new Empleado()
+            {                
+                if (Fachada.BuscarEmpleado(txtMailEmpleado.Text).Email == null)
                 {
-                    Nombre = txtNombreEmpleado.Text,
-                    Email = txtMailEmpleado.Text,
-                    Contrasena = txtContreasena.Text,
-                    Activo = true,
-                    Tipo = "E"
-                };
-                if (chkBxTecnico.Checked) emp.Tipo = "T";
-                if (emp.Buscar().Email == null)
-                {
-                    if (emp.Crear())
+                    if (Fachada.CrearEmpleado(txtNombreEmpleado.Text, txtMailEmpleado.Text, txtContreasena.Text, chkBxTecnico.Checked))
                     {
                         lblMensajeEmpleado.Text = "El empleado se pudo dar de alta correctamente.";
                     }

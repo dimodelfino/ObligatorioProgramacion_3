@@ -15,9 +15,8 @@ namespace Distribuidora.WebForms
             {
                 Response.Redirect("Login.aspx");
             }
-
-            Fabricado fab = new Fabricado();
-            grdVwListaFabricados.DataSource = fab.TraerTodo();
+            
+            grdVwListaFabricados.DataSource = Fachada.TraerTodoProdFabricado();
             grdVwListaFabricados.DataBind();
         }
     }

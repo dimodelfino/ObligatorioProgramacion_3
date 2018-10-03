@@ -46,8 +46,7 @@ namespace Distribuidora
                         foreach (Fabricado fab in fabricados)
                         {
                             i += 1;
-                            file.WriteLine();
-                            //TODO: CONFIRMAR SI HAY QUE AGREGAR LOS TECNICOS DE CADA PRODUCTO FABRICADO TAMBIEN.
+                            file.WriteLine();                            
                             file.WriteLine($"{i} - Código identificador: {fab.Id} | Nombre: {fab.Nombre} | Descripcion: {fab.Desc} | Costo: {fab.Costo} | Precio Sugerido: {fab.PrecioSugerido} | Tiempo previsto de fabricación: {fab.TiempoFab}");
                             file.WriteLine($"## Fin del producto ##");
                             file.WriteLine();
