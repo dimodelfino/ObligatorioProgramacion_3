@@ -10,9 +10,9 @@ namespace ServicioDistribuidora
 {
     public class DistribuidoraWCF : IDistribuidoraWCF
     {
-        public bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado)
+        public bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios)
         {
-           return Fachada.CrearProductoFabricado(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado);            
+           return Fachada.CrearProductoFabricado(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado, garantiaAnios);            
         }
 
         public bool agregarProductoImportado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, string origen, int cantImportacion)

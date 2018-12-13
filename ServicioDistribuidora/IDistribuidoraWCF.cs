@@ -12,7 +12,7 @@ namespace ServicioDistribuidora
     public interface IDistribuidoraWCF
     {
         [OperationContract]
-        bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado);
+        bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios);
 
         [OperationContract]
         bool agregarProductoImportado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, string origen, int cantImportacion);

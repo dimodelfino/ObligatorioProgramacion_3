@@ -96,4 +96,3 @@ C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\Obligatorio
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\Distribuidora\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\Distribuidora\obj\Debug\Distribuidora.dll
 C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\Distribuidora\obj\Debug\Distribuidora.pdb
-C:\Users\dmoreno\Documents\Visual Studio 2015\Projects\Distribuidora\ObligatorioProgramacion_3\Distribuidora\obj\Debug\Distribuidora.csprojResolveAssemblyReference.cache

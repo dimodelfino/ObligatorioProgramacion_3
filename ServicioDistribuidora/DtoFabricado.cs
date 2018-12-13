@@ -33,6 +33,8 @@ namespace ServicioDistribuidora
         //private List<Tecnico> tecnicos = new List<Tecnico>() { get; set; }
         [DataMember]
         public int tiempoRestante { get; set; }
+        [DataMember]
+        public int garantiaAnios { get; set; }
 
 
     }

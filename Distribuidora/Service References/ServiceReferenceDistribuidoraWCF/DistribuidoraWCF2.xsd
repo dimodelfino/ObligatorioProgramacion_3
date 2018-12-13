@@ -11,6 +11,7 @@
         <xs:element minOccurs="0" name="precioSugeridoProd" type="xs:double" />
         <xs:element minOccurs="0" name="tiempoFabProd" type="xs:int" />
         <xs:element minOccurs="0" name="idAltaEmpleado" type="xs:int" />
+        <xs:element minOccurs="0" name="garantiaAnios" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

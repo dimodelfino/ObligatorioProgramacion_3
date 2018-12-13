@@ -46,10 +46,10 @@ namespace Distribuidora.WebForms
                         Empleado emp = (Empleado)Session["Funcionario"];
                         if (txtNombreProducto.Text.Trim() != "" && txtDescProd.Text.Trim() != ""
                             && txtCostoProd.Text.Trim() != "" && txtPrecioSugerido.Text.Trim() != ""
-                            && txtTiempoFab.Text.Trim() != "" && emp.IdEmpleado > 0)
+                            && txtTiempoFab.Text.Trim() != "" && txtGarantiaAnios.Text.Trim() != "" && emp.IdEmpleado > 0)
                         {
                             DistribuidoraWCFClient cli = new DistribuidoraWCFClient();                            
-                            if (cli.agregarProductoFabricado(txtNombreProducto.Text, txtDescProd.Text, double.Parse(txtCostoProd.Text), double.Parse(txtPrecioSugerido.Text), Convert.ToInt32(txtTiempoFab.Text), emp.IdEmpleado))
+                            if (cli.agregarProductoFabricado(txtNombreProducto.Text, txtDescProd.Text, double.Parse(txtCostoProd.Text), double.Parse(txtPrecioSugerido.Text), Convert.ToInt32(txtTiempoFab.Text), emp.IdEmpleado, Convert.ToInt32(txtGarantiaAnios.Text)))
                             {
                                 lblMensajeProducto.Text = "El producto fabricado fue dado de alta correctamente.";
                             }

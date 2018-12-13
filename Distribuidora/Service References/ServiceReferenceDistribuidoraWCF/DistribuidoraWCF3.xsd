@@ -13,6 +13,7 @@
       <xs:element minOccurs="0" name="costo" type="xs:double" />
       <xs:element minOccurs="0" name="desc" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="descontinuado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="garantiaAnios" type="xs:int" />
       <xs:element minOccurs="0" name="idFabricado" type="xs:int" />
       <xs:element minOccurs="0" name="precioSugerido" type="xs:double" />
       <xs:element minOccurs="0" name="tiempoFab" type="xs:int" />

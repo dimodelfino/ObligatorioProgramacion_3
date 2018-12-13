@@ -1,0 +1,34 @@
+## PRODUCTOS IMPORTADOS ##
+
+1 - Código identificador: 4 | Nombre: Producto 4 | Descripcion: Descripcion del producto 4 | Costo: 100 | Precio Sugerido: 40 | Origen: China | Cantidad minima de importacion: 400
+## Fin del producto ##
+
+
+2 - Código identificador: 5 | Nombre: Producto 5 | Descripcion: Descripcion del producto 5 | Costo: 80 | Precio Sugerido: 85 | Origen: Alemania | Cantidad minima de importacion: 500
+## Fin del producto ##
+
+
+3 - Código identificador: 6 | Nombre: Producto 6 | Descripcion: Descripcion del producto 6 | Costo: 75 | Precio Sugerido: 20 | Origen: Argentina | Cantidad minima de importacion: 200
+## Fin del producto ##
+
+
+4 - Código identificador: 8 | Nombre: DefensaObligatorio | Descripcion: Defensa | Costo: 123 | Precio Sugerido: 321 | Origen: Francia | Cantidad minima de importacion: 32
+## Fin del producto ##
+
+## PRODUCTOS FABRICADOS ##
+
+1 - Código identificador: 1 | Nombre: Producto 1 | Descripcion: Descripcion del producto 1 | Costo: 20 | Precio Sugerido: 30 | Tiempo previsto de fabricación: 2
+## Fin del producto ##
+
+
+2 - Código identificador: 2 | Nombre: Producto 2 | Descripcion: Descripcion del producto 2 | Costo: 15 | Precio Sugerido: 20 | Tiempo previsto de fabricación: 5
+## Fin del producto ##
+
+
+3 - Código identificador: 3 | Nombre: Producto 3 | Descripcion: Descripcion del producto 3 | Costo: 25 | Precio Sugerido: 50 | Tiempo previsto de fabricación: 3
+## Fin del producto ##
+
+
+4 - Código identificador: 7 | Nombre: defensa | Descripcion: producto defensa | Costo: 123 | Precio Sugerido: 222 | Tiempo previsto de fabricación: 22
+## Fin del producto ##
+

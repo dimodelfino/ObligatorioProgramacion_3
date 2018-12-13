@@ -155,6 +155,9 @@ namespace Distribuidora.ServiceReferenceDistribuidoraWCF {
         private bool descontinuadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int garantiaAniosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idFabricadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -240,6 +243,19 @@ namespace Distribuidora.ServiceReferenceDistribuidoraWCF {
                 if ((this.descontinuadoField.Equals(value) != true)) {
                     this.descontinuadoField = value;
                     this.RaisePropertyChanged("descontinuado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int garantiaAnios {
+            get {
+                return this.garantiaAniosField;
+            }
+            set {
+                if ((this.garantiaAniosField.Equals(value) != true)) {
+                    this.garantiaAniosField = value;
+                    this.RaisePropertyChanged("garantiaAnios");
                 }
             }
         }
@@ -497,10 +513,10 @@ namespace Distribuidora.ServiceReferenceDistribuidoraWCF {
     public interface IDistribuidoraWCF {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricado", ReplyAction="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricadoResponse")]
-        bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado);
+        bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricado", ReplyAction="http://tempuri.org/IDistribuidoraWCF/agregarProductoFabricadoResponse")]
-        System.Threading.Tasks.Task<bool> agregarProductoFabricadoAsync(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado);
+        System.Threading.Tasks.Task<bool> agregarProductoFabricadoAsync(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDistribuidoraWCF/agregarProductoImportado", ReplyAction="http://tempuri.org/IDistribuidoraWCF/agregarProductoImportadoResponse")]
         bool agregarProductoImportado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, string origen, int cantImportacion);
@@ -566,12 +582,12 @@ namespace Distribuidora.ServiceReferenceDistribuidoraWCF {
                 base(binding, remoteAddress) {
         }
         
-        public bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado) {
-            return base.Channel.agregarProductoFabricado(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado);
+        public bool agregarProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios) {
+            return base.Channel.agregarProductoFabricado(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado, garantiaAnios);
         }
         
-        public System.Threading.Tasks.Task<bool> agregarProductoFabricadoAsync(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado) {
-            return base.Channel.agregarProductoFabricadoAsync(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado);
+        public System.Threading.Tasks.Task<bool> agregarProductoFabricadoAsync(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios) {
+            return base.Channel.agregarProductoFabricadoAsync(nombreProd, descProd, costoProd, precioSugeridoProd, tiempoFabProd, idAltaEmpleado, garantiaAnios);
         }
         
         public bool agregarProductoImportado(string nombre, string descripcion, double costo, double precioSugerido, bool descontinuado, string origen, int cantImportacion) {

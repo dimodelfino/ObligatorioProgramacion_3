@@ -202,6 +202,42 @@ namespace Distribuidora.WebForms {
         protected global::System.Web.UI.WebControls.CompareValidator cmpvTiempoFab;
         
         /// <summary>
+        /// lblGarantiaAnios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGarantiaAnios;
+        
+        /// <summary>
+        /// txtGarantiaAnios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGarantiaAnios;
+        
+        /// <summary>
+        /// rfvGarantiaAnios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvGarantiaAnios;
+        
+        /// <summary>
+        /// cmpvGarantiaAnios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cmpvGarantiaAnios;
+        
+        /// <summary>
         /// divImportado control.
         /// </summary>
         /// <remarks>

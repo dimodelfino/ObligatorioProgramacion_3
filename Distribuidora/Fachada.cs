@@ -68,7 +68,7 @@ namespace Distribuidora
 
         #region Producto
 
-        public static bool CrearProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado)
+        public static bool CrearProductoFabricado(string nombreProd, string descProd, double costoProd, double precioSugeridoProd, int tiempoFabProd, int idAltaEmpleado, int garantiaAnios)
         {
 
             Fabricado fab = new Fabricado()
@@ -79,7 +79,8 @@ namespace Distribuidora
                 PrecioSugerido = precioSugeridoProd,
                 Descontinuado = false,
                 TiempoFab = tiempoFabProd,                
-                UsuarioAlta = idAltaEmpleado
+                UsuarioAlta = idAltaEmpleado,
+                GarantiaAnios = garantiaAnios
             };
             return fab.Crear();
         }

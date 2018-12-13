@@ -40,6 +40,13 @@
         <asp:TextBox ID="txtTiempoFab" Style="margin-left: 11px" Width="127px" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="rfvTiempoFab" runat="server" ControlToValidate="txtTiempoFab" EnableClientScript="false" ErrorMessage="Debe ingresar un tiempo previsto de fabricacion." Font-Bold="true" ForeColor="Red" Display="Dynamic" />
         <asp:CompareValidator ID="cmpvTiempoFab" runat="server" ControlToValidate="txtTiempoFab" Operator="GreaterThanEqual" ValueToCompare="0" Type="Integer" ErrorMessage="El teimpo previsto debe ser mayor a cero. " Font-Bold="true" ForeColor="Red" Display="Dynamic"/>        
+        <br />
+        <br />
+        <asp:Label ID="lblGarantiaAnios" Style="margin-left: 10px" runat="server" Text="Garantia en años "></asp:Label>
+        <asp:TextBox ID="txtGarantiaAnios" Style="margin-left: 11px" Width="127px" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="rfvGarantiaAnios" runat="server" ControlToValidate="txtGarantiaAnios" EnableClientScript="false" ErrorMessage="Debe ingresar una garantia." Font-Bold="true" ForeColor="Red" Display="Dynamic" />
+        <asp:CompareValidator ID="cmpvGarantiaAnios" runat="server" ControlToValidate="txtGarantiaAnios" Operator="GreaterThanEqual" ValueToCompare="0" Type="Integer" ErrorMessage="La garantia debe ser mayor a cero. " Font-Bold="true" ForeColor="Red" Display="Dynamic"/>        
+
     </div>
     <br />
     <br />

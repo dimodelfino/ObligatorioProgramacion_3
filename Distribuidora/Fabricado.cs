@@ -15,6 +15,7 @@ namespace Distribuidora
         private int idFabricado;
         private List<Tecnico> tecnicos = new List<Tecnico>();
         private int tiempoRestante;
+        private int garantiaAnios;
 
         #region Properties
         public int TiempoFab
@@ -79,6 +80,19 @@ namespace Distribuidora
             set
             {
                 tiempoRestante = value;
+            }
+        }
+
+        public int GarantiaAnios
+        {
+            get
+            {
+                return garantiaAnios;
+            }
+
+            set
+            {
+                garantiaAnios = value;
             }
         }
 
@@ -268,15 +282,17 @@ namespace Distribuidora
                 tran = con.BeginTransaction();
                 this.Id = Convert.ToInt32(EjecutarEscalar(con, sql, parametros, CommandType.Text, tran));
 
-                sql = "INSERT INTO Fabricado VALUES (@IdProducto, @TiempoFab, @UsuarioAlta, @TiempoFab)";
+                sql = "INSERT INTO Fabricado VALUES (@IdProducto, @TiempoFab, @UsuarioAlta, @TiempoFab, @garantiaAnios)";
                 List<SqlParameter> parametrosFabricado = new List<SqlParameter>();
                 SqlParameter parFidProd = new SqlParameter("@IdProducto", this.Id);
                 SqlParameter parFtiempoFab = new SqlParameter("@TiempoFab", this.TiempoFab);
                 SqlParameter parFusuAlta = new SqlParameter("@UsuarioAlta", this.UsuarioAlta);
+                SqlParameter garantiaAnios = new SqlParameter("@garantiaAnios", this.GarantiaAnios);
 
                 parametrosFabricado.Add(parFidProd);
                 parametrosFabricado.Add(parFtiempoFab);
                 parametrosFabricado.Add(parFusuAlta);
+                parametrosFabricado.Add(garantiaAnios);
 
                 EjecutarNoConsulta(con, sql, parametrosFabricado, CommandType.Text, tran);
 
